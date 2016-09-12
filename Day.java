@@ -29,7 +29,7 @@ public class Day
                 this.dayContents = "";
         }
 
-        public editDay()
+        public void editDay()
         {
                 // if the file exists
                 if(this.fileName != "")
