@@ -39,7 +39,7 @@ public class MonthView extends JPanel {
 	}
 	add(panel1, BorderLayout.NORTH);
 
-	JPanel panel2 = new JPanel(new GridLayout(6, 7));
+	JPanel panel2 = new JPanel(new GridLayout(5, 7));
 	days = new DayView[35];
 	for (int i = 0; i < 35; i++) {
 	    days[i] = new DayView(new Day(new GregorianCalendar(year, month, 2 + i - dayOfMonth)));
