@@ -12,7 +12,8 @@ import java.util.GregorianCalendar;
 // Month view shows a month
 public class MonthView extends JPanel {
     // used for header
-    String[] months = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+    String[] dayNames = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+    String[] monthNames = { "January", "Feburary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
 
     // contains all days in the month
     DayView[] days;
@@ -36,22 +37,29 @@ public class MonthView extends JPanel {
 	Calendar calendar = new GregorianCalendar(year, month, 1);
 	int dayOfMonth = calendar.get(Calendar.DAY_OF_WEEK);
 
+	String monthName = monthNames[calendar.get(Calendar.MONTH)];
+	JLabel label = new JLabel(monthName);
+	add(label, BorderLayout.NORTH);
+
+	JPanel panel1 = new JPanel(new BorderLayout());
+
 	// set up the header to use
-	JPanel panel1 = new JPanel(new GridLayout(1, 7));
-	for (String m : months) {
-	    JLabel label = new JLabel(m);
-	    panel1.add(label);
+	JPanel panel2 = new JPanel(new GridLayout(1, 7));
+	for (String dayName : dayNames) {
+	    panel2.add(new JLabel(dayName));
 	}
-	add(panel1, BorderLayout.NORTH);
+	panel1.add(panel2, BorderLayout.NORTH);
 
 	// set up the 5x7 grid
 	// a day view is added for each (even those not in the month!)
-	JPanel panel2 = new JPanel(new GridLayout(5, 7));
+	JPanel panel3 = new JPanel(new GridLayout(5, 7));
 	days = new DayView[35];
 	for (int i = 0; i < 35; i++) {
 	    days[i] = new DayView(new Day(new GregorianCalendar(year, month, 2 + i - dayOfMonth)));
-	    panel2.add(days[i]);
+	    panel3.add(days[i]);
 	}
-	add(panel2, BorderLayout.CENTER);
+	panel1.add(panel3, BorderLayout.CENTER);
+
+	add(panel1, BorderLayout.CENTER);
     }
 }
