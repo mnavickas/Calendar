@@ -19,7 +19,7 @@ public class startMenu extends JPanel
 		SwingUtilities.invokeLater(new Runnable(){
 				public void run(){
 				menu = new startMenuFrame("Calendar");
-				menu.setSize(500,400);
+				menu.setSize(600,400);
 				menu.setResizable(false); //http://stackoverflow.com/questions/18031704/jframe-how-to-disable-window-resizing
 				menu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
 				menu.setVisible(true);
