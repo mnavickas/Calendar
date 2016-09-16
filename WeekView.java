@@ -9,9 +9,12 @@ import javax.swing.JLabel;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+// represents a 7 day period
 public class WeekView extends JPanel {
+    // used for header
     String[] months = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
+    // week object used to display
     Week week;
 
     // temp for testing
@@ -25,12 +28,12 @@ public class WeekView extends JPanel {
 	frame.setVisible(true);
     }
 
-    // MonthView is a panel for showing the month
-    // int year: current year
-    // int month: the month, 0 being Jan, 11 being Dec
+    // WeekView is a panel for showing a 7day period
+    // the week objects contains the 7 days to display
     public WeekView(Week week) {
 	super(new BorderLayout());
 
+	// setup a header with each month
 	JPanel panel1 = new JPanel(new GridLayout(1, 7));
 	for (String m : months) {
 	    JLabel label = new JLabel(m);
@@ -38,6 +41,7 @@ public class WeekView extends JPanel {
 	}
 	add(panel1, BorderLayout.NORTH);
 
+	// setup a 7 grid pieces
 	JPanel panel2 = new JPanel(new GridLayout(1, 7));
 	for (Day day : week.days) {
 	    DayView view = new DayView(day);

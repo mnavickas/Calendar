@@ -12,6 +12,7 @@ import javax.swing.BorderFactory;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+// represents a single day
 public class DayView extends JPanel {
     Day day;
 
@@ -31,11 +32,15 @@ public class DayView extends JPanel {
 
 	setBorder(BorderFactory.createLineBorder(Color.black));
 
+	// label showing day number
 	JLabel label = new JLabel("" + day.getDayNumber());
 	add(label, BorderLayout.PAGE_START);
 
+	// editable agenda
         JTextArea agendaText = new JTextArea(day.getAgenda());
 	agendaText.setPreferredSize(new Dimension(100, 100));
 	add(agendaText, BorderLayout.CENTER);
+
+	// TODO: add handler when agenda text is edited
     }
 }

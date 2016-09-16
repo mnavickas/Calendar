@@ -9,10 +9,13 @@ import javax.swing.JLabel;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+// Month view shows a month
 public class MonthView extends JPanel {
+    // used for header
     String[] months = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
-    DayView[] days; // include days not in month for convenience
+    // contains all days in the month
+    DayView[] days;
 
     // temp for testing
     public static void main(String[] args) {
@@ -29,9 +32,11 @@ public class MonthView extends JPanel {
     public MonthView(int year, int month) {
 	super(new BorderLayout());
 
+	// set up a calendar from the given year, month
 	Calendar calendar = new GregorianCalendar(year, month, 1);
 	int dayOfMonth = calendar.get(Calendar.DAY_OF_WEEK);
 
+	// set up the header to use
 	JPanel panel1 = new JPanel(new GridLayout(1, 7));
 	for (String m : months) {
 	    JLabel label = new JLabel(m);
@@ -39,6 +44,8 @@ public class MonthView extends JPanel {
 	}
 	add(panel1, BorderLayout.NORTH);
 
+	// set up the 5x7 grid
+	// a day view is added for each (even those not in the month!)
 	JPanel panel2 = new JPanel(new GridLayout(5, 7));
 	days = new DayView[35];
 	for (int i = 0; i < 35; i++) {
