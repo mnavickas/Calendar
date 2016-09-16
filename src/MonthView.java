@@ -10,6 +10,10 @@ import javax.swing.JLabel;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+// Based off of tutorial available at
+// https://docs.oracle.com/javase/tutorial/uiswing/learn/creatinggui.html
+// "Lesson: Learning Swing with the NetBeans IDE"
+
 // Month view shows a month
 public class MonthView extends JPanel {
     // used for header
