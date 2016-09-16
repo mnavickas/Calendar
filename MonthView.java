@@ -1,5 +1,6 @@
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -61,7 +62,14 @@ public class MonthView extends JPanel {
 	JPanel panel3 = new JPanel(new GridLayout(5, 7));
 	days = new DayView[35];
 	for (int i = 0; i < 35; i++) {
-	    days[i] = new DayView(new Day(new GregorianCalendar(year, month, 2 + i - dayOfMonth)));
+	    Calendar cal = new GregorianCalendar(year, month, 2 + i - dayOfMonth);
+	    days[i] = new DayView(new Day(cal));
+
+	    // this day is not in the month!
+	    if (month != cal.get(Calendar.MONTH)) {
+		days[i].setBackground(Color.lightGray);
+	    }
+
 	    panel3.add(days[i]);
 	}
 	panel1.add(panel3, BorderLayout.CENTER);
