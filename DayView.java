@@ -28,7 +28,7 @@ public class DayView extends JPanel {
     }
 
     public DayView(Day day) {
-	super();
+	super(new BorderLayout());
 
 	setBorder(BorderFactory.createLineBorder(Color.black));
 
