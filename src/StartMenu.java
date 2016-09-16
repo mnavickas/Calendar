@@ -150,12 +150,9 @@ public class StartMenu extends JPanel
         	dayChoice= (String) selectDay.getSelectedItem();
           monthChoice= (String) selectMonth.getSelectedItem();
         	viewChoice= (String) viewType.getSelectedItem();
-        	if(monthChoice=="May")
-        	{
-        		mainWindowInstance = new StartMenu();
-        		disposeframe();
-        		toMainProgram(viewChoice,monthChoice,dayChoice);
-        		}
+		mainWindowInstance = new StartMenu();
+		disposeframe();
+		toMainProgram(viewChoice,monthChoice,dayChoice);
         }
     });
 }
@@ -203,13 +200,14 @@ if(month=="December")
 {
   mc=11;
 }
+int year;
 if(mc<7)
 {
-  int year= 2017;
+    year = 2017;
 }
 else
 {
-  int year = 2016;
+    year = 2016;
 }
 if(view=="Yearly View")
 {
@@ -218,15 +216,15 @@ if(view=="Yearly View")
 
 if(view=="Monthly View")
 {
-  //MonthView.intialize(year,mc);
+    MonthView.initialize(year,mc);
 }
 if(view=="Weekly View")
 {
-  //WeekView.intialize(year, mc, dc);
+    WeekView.initialize(year, mc, dc);
 }
 if(view=="Daily View")
 {
-  //DayView.intialize(year, mc, dc);
+    DayView.initialize(year, mc, dc);
 }
 }
 //		MonthlyView1.main(months);
