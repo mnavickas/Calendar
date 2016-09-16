@@ -27,8 +27,16 @@ public class DayView extends JPanel {
 	frame.setVisible(true);
     }
 
+    public static void initialize(int year, int month, int day) {
+	JFrame frame = new JFrame("Day View");
+	DayView view = new DayView(new Day(new GregorianCalendar(year, month, day)));
+	frame.add(view, BorderLayout.CENTER);
+	frame.pack();
+	frame.setVisible(true);
+    }
+
     public DayView(Day day) {
-	super();
+	super(new BorderLayout());
 
 	setBorder(BorderFactory.createLineBorder(Color.black));
 

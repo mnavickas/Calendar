@@ -28,6 +28,16 @@ public class WeekView extends JPanel {
 	frame.setVisible(true);
     }
 
+    public static void initialize(int year, int month, int day) {
+	JFrame frame = new JFrame("Day View");
+	Calendar firstDay = new GregorianCalendar(year, month, day);
+	Week week = new Week(firstDay);
+	WeekView view = new WeekView(week);
+	frame.add(view, BorderLayout.CENTER);
+	frame.pack();
+	frame.setVisible(true);
+    }
+
     // WeekView is a panel for showing a 7day period
     // the week objects contains the 7 days to display
     public WeekView(Week week) {

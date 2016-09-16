@@ -1,5 +1,6 @@
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,10 +19,16 @@ public class MonthView extends JPanel {
     // contains all days in the month
     DayView[] days;
 
+    public String monthName;
+
     // temp for testing
     public static void main(String[] args) {
-	JFrame frame = new JFrame("Month View");
-	MonthView view = new MonthView(2016, Calendar.SEPTEMBER);
+	initialize(2016, Calendar.AUGUST);
+    }
+
+    public static void initialize(int year, int month) {
+	MonthView view = new MonthView(year, month);
+	JFrame frame = new JFrame(view.monthName);
 	frame.add(view, BorderLayout.CENTER);
 	frame.pack();
 	frame.setVisible(true);
@@ -37,7 +44,7 @@ public class MonthView extends JPanel {
 	Calendar calendar = new GregorianCalendar(year, month, 1);
 	int dayOfMonth = calendar.get(Calendar.DAY_OF_WEEK);
 
-	String monthName = monthNames[calendar.get(Calendar.MONTH)];
+	this.monthName = monthNames[calendar.get(Calendar.MONTH)];
 	JLabel label = new JLabel(monthName);
 	add(label, BorderLayout.NORTH);
 
@@ -55,7 +62,14 @@ public class MonthView extends JPanel {
 	JPanel panel3 = new JPanel(new GridLayout(5, 7));
 	days = new DayView[35];
 	for (int i = 0; i < 35; i++) {
-	    days[i] = new DayView(new Day(new GregorianCalendar(year, month, 2 + i - dayOfMonth)));
+	    Calendar cal = new GregorianCalendar(year, month, 2 + i - dayOfMonth);
+	    days[i] = new DayView(new Day(cal));
+
+	    // this day is not in the month!
+	    if (month != cal.get(Calendar.MONTH)) {
+		days[i].setBackground(Color.lightGray);
+	    }
+
 	    panel3.add(days[i]);
 	}
 	panel1.add(panel3, BorderLayout.CENTER);
