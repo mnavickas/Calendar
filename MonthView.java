@@ -18,10 +18,16 @@ public class MonthView extends JPanel {
     // contains all days in the month
     DayView[] days;
 
+    public String monthName;
+
     // temp for testing
     public static void main(String[] args) {
-	JFrame frame = new JFrame("Month View");
-	MonthView view = new MonthView(2016, Calendar.SEPTEMBER);
+	initialize(2016, Calendar.AUGUST);
+    }
+
+    public static void initialize(int year, int month) {
+	MonthView view = new MonthView(year, month);
+	JFrame frame = new JFrame(view.monthName);
 	frame.add(view, BorderLayout.CENTER);
 	frame.pack();
 	frame.setVisible(true);
@@ -37,7 +43,7 @@ public class MonthView extends JPanel {
 	Calendar calendar = new GregorianCalendar(year, month, 1);
 	int dayOfMonth = calendar.get(Calendar.DAY_OF_WEEK);
 
-	String monthName = monthNames[calendar.get(Calendar.MONTH)];
+	this.monthName = monthNames[calendar.get(Calendar.MONTH)];
 	JLabel label = new JLabel(monthName);
 	add(label, BorderLayout.NORTH);
 
