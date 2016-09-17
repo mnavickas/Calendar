@@ -2,14 +2,15 @@ import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.BorderFactory;
-import java.awt.Dimension;
-
+import javax.swing.event.DocumentListener;
+import javax.swing.event.DocumentEvent;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -23,7 +24,7 @@ public class DayView extends JPanel {
 	JFrame frame = new JFrame("Day");
 	Day day = new Day(new GregorianCalendar(2016, Calendar.SEPTEMBER, 2));
 	day.setAgenda("1. asdf\n2. asdfg\n3.asdfgh");
-	DayView view = new DayView(day);
+	DayView view = new DayView(day, true);
 	frame.add(view);
 
 	frame.pack();
@@ -32,14 +33,14 @@ public class DayView extends JPanel {
 
     public static void initialize(int year, int month, int day) {
 	JFrame frame = new JFrame("Day View");
-  frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
-	DayView view = new DayView(new Day(new GregorianCalendar(year, month, day)));
+	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
+	DayView view = new DayView(new Day(new GregorianCalendar(year, month, day)), true);
 	frame.add(view, BorderLayout.CENTER);
 	frame.pack();
 	frame.setVisible(true);
     }
 
-    public DayView(Day day) {
+    public DayView(Day day, boolean needsText) {
 	super(new BorderLayout());
 
 
@@ -50,11 +51,24 @@ public class DayView extends JPanel {
 	add(label, BorderLayout.PAGE_START);
 
 	// editable agenda
-        JTextArea agendaText = new JTextArea(day.getAgenda());
-        agendaText.setLineWrap(true);
-        agendaText.setWrapStyleWord(true);
-	      agendaText.setPreferredSize(new Dimension(100, 100));
-	add(agendaText, BorderLayout.CENTER);
+	if (needsText) {
+	    JTextArea agendaText = new JTextArea(day.getAgenda());
+	    agendaText.setLineWrap(true);
+	    agendaText.setWrapStyleWord(true);
+	    agendaText.setPreferredSize(new Dimension(100, 100));
+	    agendaText.getDocument().addDocumentListener(new DocumentListener() {
+		    public void changedUpdate(DocumentEvent documentEvent) {
+			System.out.println(documentEvent);
+		    }
+		    public void insertUpdate(DocumentEvent documentEvent) {
+			System.out.println(documentEvent);
+		    }
+		    public void removeUpdate(DocumentEvent documentEvent) {
+			System.out.println(documentEvent);
+		    }
+		});
+	    add(agendaText, BorderLayout.CENTER);
+	}
 
 	// TODO: add handler when agenda text is edited
     }

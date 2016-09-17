@@ -31,7 +31,7 @@ public class MonthView extends JPanel {
     }
 
     public static void initialize(int year, int month) {
-	MonthView view = new MonthView(year, month);
+	MonthView view = new MonthView(year, month, true);
 	JFrame frame = new JFrame(view.monthName);
 	frame.add(view, BorderLayout.CENTER);
 	frame.pack();
@@ -43,7 +43,7 @@ public class MonthView extends JPanel {
     // MonthView is a panel for showing the month
     // int year: current year
     // int month: the month, 0 being Jan, 11 being Dec
-    public MonthView(int year, int month) {
+    public MonthView(int year, int month, boolean needsHeader) {
 	super(new BorderLayout());
 
 	// set up a calendar from the given year, month
@@ -56,12 +56,14 @@ public class MonthView extends JPanel {
 
 	JPanel panel1 = new JPanel(new BorderLayout());
 
-	// set up the header to use
-	JPanel panel2 = new JPanel(new GridLayout(1, 7));
-	for (String dayName : dayNames) {
-	    panel2.add(new JLabel(dayName));
+	if (needsHeader) {
+	    // set up the header to use
+	    JPanel panel2 = new JPanel(new GridLayout(1, 7));
+	    for (String dayName : dayNames) {
+		panel2.add(new JLabel(dayName));
+	    }
+	    panel1.add(panel2, BorderLayout.NORTH);
 	}
-	panel1.add(panel2, BorderLayout.NORTH);
 
 	// set up the 5x7 grid
 	// a day view is added for each (even those not in the month!)
@@ -69,7 +71,7 @@ public class MonthView extends JPanel {
 	days = new DayView[35];
 	for (int i = 0; i < 35; i++) {
 	    Calendar cal = new GregorianCalendar(year, month, 2 + i - dayOfMonth);
-	    days[i] = new DayView(new Day(cal));
+	    days[i] = new DayView(new Day(cal), false);
 
 	    // this day is not in the month!
 	    if (month != cal.get(Calendar.MONTH)) {

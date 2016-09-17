@@ -22,7 +22,7 @@ public class WeekView extends JPanel {
 	JFrame frame = new JFrame("Week View");
 	Calendar firstDay = new GregorianCalendar(2016, Calendar.SEPTEMBER, 2);
 	Week week = new Week(firstDay);
-	WeekView view = new WeekView(week);
+	WeekView view = new WeekView(week, true, true);
 	frame.add(view, BorderLayout.CENTER);
 	frame.pack();
 	frame.setVisible(true);
@@ -34,7 +34,7 @@ public class WeekView extends JPanel {
 	JFrame frame = new JFrame("Day View");
 	Calendar firstDay = new GregorianCalendar(year, month, day);
 	Week week = new Week(firstDay);
-	WeekView view = new WeekView(week);
+	WeekView view = new WeekView(week, true, true);
 	frame.add(view, BorderLayout.CENTER);
 	frame.pack();
 	frame.setVisible(true);
@@ -42,7 +42,7 @@ public class WeekView extends JPanel {
 
     // WeekView is a panel for showing a 7day period
     // the week objects contains the 7 days to display
-    public WeekView(Week week) {
+    public WeekView(Week week, boolean needsHeader, boolean needsText) {
 	super(new BorderLayout());
 
 	// setup a header with each month
@@ -56,7 +56,7 @@ public class WeekView extends JPanel {
 	// setup a 7 grid pieces
 	JPanel panel2 = new JPanel(new GridLayout(1, 7));
 	for (Day day : week.days) {
-	    DayView view = new DayView(day);
+	    DayView view = new DayView(day, needsText);
 	    panel2.add(view);
 	}
 	add(panel2, BorderLayout.CENTER);
