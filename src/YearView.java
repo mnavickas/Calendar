@@ -17,11 +17,21 @@ public class YearView extends JPanel
 {
 
         MonthView[] months;
+        JPanel panelNorth;
+        JPanel panelCenter;
+        JPanel panelGap;
+        JLabel yearViewTitle;
+        int[] academicMonths;
+        String[] academicMonthsStrings;
+        String[] days;
+
 
 
         public static void main(String[] args)
         {
                 JFrame frame = new JFrame("Year View");
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
                 YearView view = new YearView();
 
                 frame.add(view, BorderLayout.CENTER);
@@ -35,29 +45,31 @@ public class YearView extends JPanel
         {
                 super( new BorderLayout() );
 
-                Calendar calendar2016 = new GregorianCalendar(2016, 8, 1);
-                Calendar calendar2017 = new GregorianCalendar(2017, 1, 1);
+                this.panelNorth = new JPanel( new GridLayout(2,1) );
 
-                JPanel panelNorth = new JPanel( new GridLayout(2,1) );
-                JPanel panelCenter = new JPanel( new GridLayout(4,5) );
-                JPanel panelGap = new JPanel( new GridLayout(1,1) );
+                this.panelCenter = new JPanel( new GridLayout(4,5) );
+                this.panelGap = new JPanel( new GridLayout(1,1) );
+
+                // odd number --> panelCenter and even number --> panelGap
+                // will help with alternating the sizes of adjacent panels
+                int whichPanel = 1;
 
 
-                JLabel year = new JLabel("Academic School Year: 2016/2017");
-                panelNorth.add(year);
+                this.yearViewTitle = new JLabel("Academic School Year: 2016/2017");
+                panelNorth.add(yearViewTitle);
                 panelNorth.add( new JLabel("") );
                 add(panelNorth, BorderLayout.NORTH);
 
 
-                int[] academicMonths = new int[] { Calendar.AUGUST , Calendar.SEPTEMBER , Calendar.OCTOBER , Calendar.NOVEMBER , Calendar.DECEMBER , Calendar.JANUARY , Calendar.FEBRUARY , Calendar.MARCH , Calendar.APRIL , Calendar.MAY };
+                this.academicMonths = new int[] { Calendar.AUGUST , Calendar.SEPTEMBER , Calendar.OCTOBER , Calendar.NOVEMBER , Calendar.DECEMBER , Calendar.JANUARY , Calendar.FEBRUARY , Calendar.MARCH , Calendar.APRIL , Calendar.MAY };
 
-                String[] academicMonthsStrings = { "August" , "September" , "October" , "November" , "December" , "January" , "February" , "March" , "April" , "May" };
+                this.academicMonthsStrings = new String[] { "August" , "September" , "October" , "November" , "December" , "January" , "February" , "March" , "April" , "May" };
 
-                String[] days = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+                this.days = new String[] { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
 
 
-                months = new MonthView[10];
+                this.months = new MonthView[10];
                 int curYear = 2016;
 
                 for(int A = 0 ; A < 10 ; A++)
@@ -67,19 +79,26 @@ public class YearView extends JPanel
                                 curYear = 2017;
                         }
 
-                        months[A] = new MonthView( curYear, academicMonths[A] );
-
+                        this.months[A] = new MonthView( curYear, academicMonths[A], false );
 
                         JPanel panel1 = new JPanel(new GridLayout(1,1));
                         panel1.add( new JLabel(academicMonthsStrings[A] + " " + Integer.toString(curYear) ) );
                         months[A].add(panel1, BorderLayout.NORTH);
-
-
-                        panelCenter.add( months[A] );
-
-                        panelCenter.add( new JPanel( new GridLayout(1,1) ) );
                 }
-                add(panelCenter, BorderLayout.CENTER);
+
+
+
+
+                for(int A = 0 ; A < 10 ; A++)
+                {
+                        this.panelCenter.add( months[A] );
+                        {
+                                this.panelCenter.add( new JPanel( new GridLayout(1,1) ) );
+                        }
+                }
+
+                add(this.panelCenter, BorderLayout.CENTER);
+
 
         }
 
