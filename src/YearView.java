@@ -1,6 +1,10 @@
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.BorderFactory;
@@ -27,17 +31,27 @@ public class YearView extends JPanel
 
 
 
-        public static void main(String[] args)
+        public static void initialize()
         {
                 JFrame frame = new JFrame("Year View");
+
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
                 YearView view = new YearView();
-
+                JButton button = new JButton("BACK");
+                frame.add(button,BorderLayout.NORTH);
                 frame.add(view, BorderLayout.CENTER);
                 frame.pack();
                 frame.setVisible(true);
+              button.addActionListener(new ActionListener()
+              {
 
+                      public void actionPerformed(ActionEvent arg0)
+                      {
+                        StartMenu.initialize();
+                        frame.dispose();
+                      }
+              });
         }
 
 

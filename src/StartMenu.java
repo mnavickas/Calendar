@@ -54,7 +54,19 @@ public class StartMenu extends JPanel
         		}
                 });
         }
-
+        public static void initialize()
+        {
+          SwingUtilities.invokeLater(new Runnable()
+                {
+              public void run(){
+              menu = new StartMenuFrame("Calendar");
+              menu.setSize(850,700);
+              menu.setResizable(true); //http://stackoverflow.com/questions/18031704/jframe-how-to-disable-window-resizing
+              menu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
+              menu.setVisible(true);
+            }
+                });
+        }
 
 
         public final JFrame getMainFrame()
@@ -183,7 +195,7 @@ public class StartMenu extends JPanel
                         	toMainProgram(viewChoice,monthChoice,dayChoice);
                         }
                 });
-                
+
         }
 
 
@@ -248,7 +260,7 @@ public class StartMenu extends JPanel
                 }
                 if(view=="Yearly View")
                 {
-                        //YearView.intilize(year);
+                        YearView.initialize();
                 }
 
                 if(view=="Monthly View")

@@ -1,10 +1,13 @@
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.JButton;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -17,18 +20,7 @@ public class WeekView extends JPanel {
     // week object used to display
     Week week;
 
-    // temp for testing
-    public static void main(String[] args) {
-	JFrame frame = new JFrame("Week View");
-	Calendar firstDay = new GregorianCalendar(2016, Calendar.SEPTEMBER, 2);
-	Week week = new Week(firstDay);
-	WeekView view = new WeekView(week, true, true);
-	frame.add(view, BorderLayout.CENTER);
-	frame.pack();
-	frame.setVisible(true);
-  frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
 
-    }
 
     public static void initialize(int year, int month, int day) {
 	JFrame frame = new JFrame("Day View");
@@ -38,6 +30,18 @@ public class WeekView extends JPanel {
 	frame.add(view, BorderLayout.CENTER);
 	frame.pack();
 	frame.setVisible(true);
+  frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
+  JButton button = new JButton("BACK");
+  frame.add(button,BorderLayout.NORTH);
+button.addActionListener(new ActionListener()
+{
+
+        public void actionPerformed(ActionEvent arg0)
+        {
+          StartMenu.initialize();
+          frame.dispose();
+        }
+});
     }
 
     // WeekView is a panel for showing a 7day period

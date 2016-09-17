@@ -3,6 +3,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.BorderFactory;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.DocumentEvent;
+import javax.swing.JButton;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -38,6 +41,17 @@ public class DayView extends JPanel {
 	frame.add(view, BorderLayout.CENTER);
 	frame.pack();
 	frame.setVisible(true);
+  JButton button = new JButton("BACK");
+  frame.add(button,BorderLayout.NORTH);
+button.addActionListener(new ActionListener()
+{
+
+        public void actionPerformed(ActionEvent arg0)
+        {
+          StartMenu.initialize();
+          frame.dispose();
+        }
+});
     }
 
     public DayView(Day day, boolean needsText) {
@@ -56,6 +70,8 @@ public class DayView extends JPanel {
 	    agendaText.setLineWrap(true);
 	    agendaText.setWrapStyleWord(true);
 	    agendaText.setPreferredSize(new Dimension(100, 100));
+
+
 	    agendaText.getDocument().addDocumentListener(new DocumentListener() {
 		    public void changedUpdate(DocumentEvent documentEvent) {
 			System.out.println(documentEvent);

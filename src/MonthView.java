@@ -1,11 +1,14 @@
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.JButton;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -33,11 +36,21 @@ public class MonthView extends JPanel {
     public static void initialize(int year, int month) {
 	MonthView view = new MonthView(year, month, true);
 	JFrame frame = new JFrame(view.monthName);
+  JButton button = new JButton("BACK");
+  frame.add(button,BorderLayout.NORTH);
 	frame.add(view, BorderLayout.CENTER);
 	frame.pack();
 	frame.setVisible(true);
   frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
+  button.addActionListener(new ActionListener()
+  {
 
+          public void actionPerformed(ActionEvent arg0)
+          {
+            StartMenu.initialize();
+            frame.dispose();
+          }
+  });
     }
 
     // MonthView is a panel for showing the month
