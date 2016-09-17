@@ -26,6 +26,8 @@ public class WeekView extends JPanel {
 	frame.add(view, BorderLayout.CENTER);
 	frame.pack();
 	frame.setVisible(true);
+  frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
+
     }
 
     public static void initialize(int year, int month, int day) {
