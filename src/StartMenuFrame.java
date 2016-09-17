@@ -3,23 +3,26 @@ import java.awt.Container;
 
 import javax.swing.JFrame;
 
-public class StartMenuFrame extends JFrame{
-    private static final long serialVersionUID = 5462223600l;
-	public static Container c;
-	private StartMenu menuDetails;
+public class StartMenuFrame extends JFrame
+{
 
-	public StartMenuFrame(String title){
-		super(title);
+        private static final long serialVersionUID = 5462223600l;
+        public static Container c;
+        private StartMenu menuDetails;
 
-		setLayout(new BorderLayout());
-		menuDetails = new StartMenu();
+        public StartMenuFrame(String title)
+        {
+        	super(title);
 
-		//JButton button = new JButton("Submit");
-		Container c = getContentPane();
+        	setLayout(new BorderLayout());
+        	menuDetails = new StartMenu();
 
-		//c.add(button,BorderLayout.SOUTH);
-		c.add(menuDetails,BorderLayout.CENTER);
+        	//JButton button = new JButton("Submit");
+        	Container c = getContentPane();
 
-	}
+        	//c.add(button,BorderLayout.SOUTH);
+        	c.add(menuDetails,BorderLayout.CENTER);
+
+        }
 
 }
