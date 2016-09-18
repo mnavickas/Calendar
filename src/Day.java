@@ -68,7 +68,7 @@ public class Day {
      */
     public String toString() {
 	// http://stackoverflow.com/questions/7317455/converting-calendar-date-to-string
-	return "Day of " + new SimpleDateFormat("dd-MMM-yyyy").format(this.cal.getTime());
+	return new SimpleDateFormat("dd-MMM-yyyy").format(this.cal.getTime());
     }
 
     /*

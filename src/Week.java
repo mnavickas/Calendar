@@ -34,4 +34,13 @@ public class Week {
     public Day[] getDays() {
 	return days;
     }
+
+    /*
+     * Convert the week to a string.
+     * @return string rep of week
+     */
+    public String toString() {
+	return "Week of " + days[0] + " to " + days[6];
+    }
+
 }
