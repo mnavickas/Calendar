@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 
 /**
  * Frame used by StartMenu.
+ * @param c is a container that holds content into the JFrame
+ * @param StartMenu menuDetails creates a new startmenu object when the program starts
+ * Tutorial used to get familiar with JavaSwing https://www.youtube.com/watch?v=svM0SBFqp4s
  */
 public class StartMenuFrame extends JFrame
 {
