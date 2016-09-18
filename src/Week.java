@@ -6,6 +6,8 @@ import java.util.Calendar;
  * Date type for a week. 
  */
 public class Week {
+    private Calendar cal;
+    private DBManager db;
     private Day[] days;
 
     /*
@@ -14,6 +16,9 @@ public class Week {
      * @param db Database to lookup from.
      */ 
     public Week(Calendar cal, DBManager db) {
+	this.cal = (Calendar) cal.clone();
+	this.db = db;
+
 	// initialize days
 	days = new Day[7];
 
@@ -43,4 +48,23 @@ public class Week {
 	return "Week of " + days[0] + " to " + days[6];
     }
 
+    /*
+     * get the previous week
+     * @return the week previously
+     */
+    public Week getPreviousWeek() {
+	Calendar newCal = (Calendar) cal.clone();
+	newCal.add(Calendar.DAY_OF_YEAR, -7);
+	return new Week(newCal, this.db);
+    }
+
+    /*
+     * get the next week
+     * @return the next week
+     */
+    public Week getNextWeek() {
+	Calendar newCal = (Calendar) cal.clone();
+	newCal.add(Calendar.DAY_OF_YEAR, 7);
+	return new Week(newCal, this.db);
+    }
 }
