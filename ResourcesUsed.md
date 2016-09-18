@@ -21,3 +21,7 @@ Java package structure based on information available at http://www.jarticles.co
 
 ## MySQL References
 * http://dev.mysql.com/doc/refman/5.7/en/insert-on-duplicate.html
+
+## Youtube Tutorial
+* https://www.youtube.com/watch?v=svM0SBFqp4s
+* https://www.youtube.com/watch?v=YKaea4ezQQE
