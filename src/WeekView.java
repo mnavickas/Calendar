@@ -12,40 +12,55 @@ import javax.swing.JButton;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-// represents a 7 day period
+/*
+ * Display the days for a 7 day week period.
+ */
 public class WeekView extends JPanel {
     // used for header
-    String[] months = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+    private String[] months = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
     // week object used to display
-    Week week;
+    private Week week;
 
-
-
+    /*
+     * Initialize the week from parameters. Helper function needed by StartMenu.
+     * @param year The year to use for the week.
+     * @param month The month to use for the week.
+     * @parma day The day to use for the week.
+     */
     public static void initialize(int year, int month, int day) {
 	JFrame frame = new JFrame("Day View");
+
+	// initialize the week from params
 	Calendar firstDay = new GregorianCalendar(year, month, day);
 	Week week = new Week(firstDay);
 	WeekView view = new WeekView(week, true, true);
 	frame.add(view, BorderLayout.CENTER);
+
+	// back button
+	JButton button = new JButton("BACK");
+	frame.add(button,BorderLayout.NORTH);
+	button.addActionListener(new ActionListener()
+	    {
+
+		public void actionPerformed(ActionEvent arg0)
+		{
+		    StartMenu.initialize();
+		    frame.dispose();
+		}
+	    });
+
 	frame.pack();
 	frame.setVisible(true);
-  frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
-  JButton button = new JButton("BACK");
-  frame.add(button,BorderLayout.NORTH);
-button.addActionListener(new ActionListener()
-{
-
-        public void actionPerformed(ActionEvent arg0)
-        {
-          StartMenu.initialize();
-          frame.dispose();
-        }
-});
+	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
     }
 
-    // WeekView is a panel for showing a 7day period
-    // the week objects contains the 7 days to display
+    /*
+     * Construct a week view from a week object.
+     * @param week The week to display.
+     * @param needsHeader Whether to display the Sunday-Saturday header.
+     * @param needsText Whether to display a text area in each day view.
+     */
     public WeekView(Week week, boolean needsHeader, boolean needsText) {
 	super(new BorderLayout());
 
@@ -59,7 +74,7 @@ button.addActionListener(new ActionListener()
 
 	// setup a 7 grid pieces
 	JPanel panel2 = new JPanel(new GridLayout(1, 7));
-	for (Day day : week.days) {
+	for (Day day : week.getDays()) {
 	    DayView view = new DayView(day, needsText);
 	    panel2.add(view);
 	}

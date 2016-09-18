@@ -5,15 +5,21 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/*
+ * DBManager handles reading and storing information in the database.
+ */
 public class DBManager {
-
 	private final String URL = "jdbc:mysql://mysql.eecs.ku.edu:3306/layer";
 	private final String USER = "layer";
 	private final String PASS = "loganayer";
-	
-	public DBManager(){}
-	
-	public String GetEventFromDate(Date date, String user) throws SQLException{
+
+	/*
+	 * Get the event data from the date.
+	 *
+	 * @param date The date to get in the database.
+	 * @param user The current user.
+	 */ 
+	public String getEventFromDate(Date date, String user) throws SQLException {
 		//Initialize JDBC variables
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -21,7 +27,6 @@ public class DBManager {
 		
 		//Initialize the return value
 		String retVal = "";
-		
 		
 		try {
 			//Attempt to connect to database
@@ -55,8 +60,15 @@ public class DBManager {
 		//Return our string of events
 		return retVal;
 	}
-	
-	public void SetEventToDate(Date date, String user, String event) throws SQLException{
+
+	/*
+	 * Set the event for a date.
+	 *
+	 * @param date The date to set.
+	 * @param user The user to access in the database.
+	 * @param event The event to store.
+	 */
+	public void setEventToDate(Date date, String user, String event) throws SQLException{
 		//Initialize JDBC variables
 		Connection con = null;
 		PreparedStatement ps = null;

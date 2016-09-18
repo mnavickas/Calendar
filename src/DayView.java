@@ -18,22 +18,22 @@ import javax.swing.JButton;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-// represents a single day
+/*
+ * DayView
+ *
+ * DayView creates the interface elements for one day in the calendar.
+ */
 public class DayView extends JPanel {
-    Day day;
+    private Day day;
 
-    // temp for testing
-    public static void main(String[] args) {
-	JFrame frame = new JFrame("Day");
-	Day day = new Day(new GregorianCalendar(2016, Calendar.SEPTEMBER, 2));
-	day.setAgenda("1. asdf\n2. asdfg\n3.asdfgh");
-	DayView view = new DayView(day, true);
-	frame.add(view);
-
-	frame.pack();
-	frame.setVisible(true);
-    }
-
+    /*
+     * Initialize a DayView window.
+     * This is a helper function used by the StartMenu.
+     *
+     * @param year The year to be shown for example 2016.
+     * @param month The month to be shown for example 10 for September.
+     * @param day The day to be shown for example 18.
+     */
     public static void initialize(int year, int month, int day) {
 	JFrame frame = new JFrame("Day View");
 	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
@@ -41,22 +41,25 @@ public class DayView extends JPanel {
 	frame.add(view, BorderLayout.CENTER);
 	frame.pack();
 	frame.setVisible(true);
-  JButton button = new JButton("BACK");
-  frame.add(button,BorderLayout.NORTH);
-button.addActionListener(new ActionListener()
-{
 
-        public void actionPerformed(ActionEvent arg0)
-        {
-          StartMenu.initialize();
-          frame.dispose();
-        }
-});
+	JButton button = new JButton("BACK");
+	frame.add(button,BorderLayout.NORTH);
+	button.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent arg0) {
+		    StartMenu.initialize();
+		    frame.dispose();
+		}
+	    });
     }
 
+    /*
+     * Create the view to show the current day.
+     *
+     * @param day The object to use to get info on the day.
+     * @param needsText Whether to display the text area of the agenda.
+     */ 
     public DayView(Day day, boolean needsText) {
 	super(new BorderLayout());
-
 
 	setBorder(BorderFactory.createLineBorder(Color.black));
 
@@ -71,21 +74,15 @@ button.addActionListener(new ActionListener()
 	    agendaText.setWrapStyleWord(true);
 	    agendaText.setPreferredSize(new Dimension(100, 100));
 
-
 	    agendaText.getDocument().addDocumentListener(new DocumentListener() {
 		    public void changedUpdate(DocumentEvent documentEvent) {
-			System.out.println(documentEvent);
 		    }
 		    public void insertUpdate(DocumentEvent documentEvent) {
-			System.out.println(documentEvent);
 		    }
 		    public void removeUpdate(DocumentEvent documentEvent) {
-			System.out.println(documentEvent);
 		    }
 		});
 	    add(agendaText, BorderLayout.CENTER);
 	}
-
-	// TODO: add handler when agenda text is edited
     }
 }

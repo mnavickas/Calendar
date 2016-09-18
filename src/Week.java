@@ -1,10 +1,15 @@
 import java.util.Calendar;
 
+/*
+ * Date type for a week. 
+ */
 public class Week {
-    public Day[] days;
+    private Day[] days;
 
-    // Calendar cal: first day of week
-    // creates a "week" from a calendar point
+    /*
+     * Construct a week from its first day.
+     * @param cal the Calendar date to use.
+     */ 
     public Week(Calendar cal) {
 	// initialize days
 	days = new Day[7];
@@ -17,5 +22,13 @@ public class Week {
 	    cal.add(Calendar.DATE, 1);
 	    days[i] = new Day((Calendar) cal.clone());
 	}
+    }
+
+    /*
+     * Get the days in this week.
+     * @return A list of 7 days.
+     */
+    public Day[] getDays() {
+	return days;
     }
 }
