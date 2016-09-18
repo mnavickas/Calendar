@@ -21,6 +21,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.JButton;
 import javax.swing.text.Document;
 import javax.swing.text.BadLocationException;
+import javax.swing.SwingUtilities;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -37,31 +38,37 @@ public class DayView extends JPanel {
      * Initialize a DayView window.
      * This is a helper function used by the StartMenu.
      *
-     * @param year The year to be shown for example 2016.
-     * @param month The month to be shown for example 10 for September.
-     * @param day The day to be shown for example 18.
      */
-    public static void initialize(Day day) {
+    public static void initialize(Day day, boolean isPopup) {
 	JFrame frame = new JFrame(day.toString());
 
 	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
-	DayView view = new DayView(day, true);
+	DayView view = new DayView(day, true, isPopup);
 	frame.add(view, BorderLayout.CENTER);
 	frame.pack();
 	frame.setVisible(true);
 
-	JButton button1 = new JButton("BACK");
-	frame.add(button1,BorderLayout.NORTH);
-	button1.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent arg0) {
-		    StartMenu.initialize();
-		    frame.dispose();
-		}
-	    });
+	if (!isPopup) {
+	    JButton button1 = new JButton("Back to main menu");
+	    frame.add(button1,BorderLayout.NORTH);
+	    button1.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent arg0) {
+			StartMenu.initialize();
+			frame.dispose();
+		    }
+		});
+	}
     }
 
-    public static void initialize(int year, int month, int day) {
-	initialize(new Day(new GregorianCalendar(year, month, day), new DBManager("testuser")));
+    /*
+     * Same as above but with different parrameters.
+     *
+     * @param year The year to be shown for example 2016.
+     * @param month The month to be shown for example 10 for September.
+     * @param day The day to be shown for example 18.
+     */
+    public static void initialize(int year, int month, int day, boolean isPopup) {
+	initialize(new Day(new GregorianCalendar(year, month, day), new DBManager("testuser")), isPopup);
     }
 
     /*
@@ -70,8 +77,10 @@ public class DayView extends JPanel {
      * @param day The object to use to get info on the day.
      * @param needsText Whether to display the text area of the agenda.
      */ 
-    public DayView(Day day, boolean needsText) {
+    public DayView(Day day, boolean needsText, boolean isPopup) {
 	super(new BorderLayout());
+
+	JPanel parent = this;
 
 	setBorder(BorderFactory.createLineBorder(Color.black));
 	setPreferredSize(new Dimension(400, 400));
@@ -86,7 +95,7 @@ public class DayView extends JPanel {
 		public void mouseExited(MouseEvent e) {
 		}
 		public void mouseClicked(MouseEvent e) {
-		    initialize(day);
+		    initialize(day, true);
 		}
 	    });
 
@@ -127,7 +136,12 @@ public class DayView extends JPanel {
 	    add(agendaText, BorderLayout.CENTER);
 
 	    // save button
-	    JButton button2 = new JButton("SAVE");
+	    JButton button2;
+	    if (isPopup) {
+		button2 = new JButton("Save and close");
+	    } else {
+		button2 = new JButton("Save");
+	    }
 	    add(button2,BorderLayout.NORTH);
 	    button2.addActionListener(new ActionListener() {
 		    public void actionPerformed(ActionEvent arg0) {
@@ -140,6 +154,12 @@ public class DayView extends JPanel {
 			    text = "";
 			}
 			day.setAgenda(text);
+
+			// close after save if popup
+			if (isPopup) {
+			    JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(parent);
+			    topFrame.dispose();
+			}
 		    }
 		});
 	}

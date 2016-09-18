@@ -135,7 +135,7 @@ public class MonthView extends JPanel {
 	days = new DayView[35];
 	for (int i = 0; i < 35; i++) {
 	    Calendar cal = new GregorianCalendar(month.getYear(), month.getMonthNum(), 2 + i - dayOfMonth);
-	    days[i] = new DayView(new Day(cal, db), false);
+	    days[i] = new DayView(new Day(cal, db), false, false);
 
 	    // this day is not in the month!
 	    if (month.getMonthNum() != cal.get(Calendar.MONTH)) {

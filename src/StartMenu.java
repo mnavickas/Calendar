@@ -274,7 +274,7 @@ public class StartMenu extends JPanel
                 }
                 if(view=="Daily View")
                 {
-                        DayView.initialize(year, mc, dc);
+		    DayView.initialize(year, mc, dc, false);
                 }
 
         }

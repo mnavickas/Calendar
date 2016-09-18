@@ -120,7 +120,7 @@ public class WeekView extends JPanel {
 	// setup a 7 grid pieces
 	JPanel panel2 = new JPanel(new GridLayout(1, 7));
 	for (Day day : week.getDays()) {
-	    DayView view = new DayView(day, needsText);
+	    DayView view = new DayView(day, needsText, false);
 	    panel2.add(view);
 	}
 	add(panel2, BorderLayout.CENTER);
