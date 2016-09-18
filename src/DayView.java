@@ -7,6 +7,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
+import java.awt.Cursor;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -38,12 +41,11 @@ public class DayView extends JPanel {
      * @param month The month to be shown for example 10 for September.
      * @param day The day to be shown for example 18.
      */
-    public static void initialize(int year, int month, int day) {
-	DBManager db = new DBManager("testuser");
+    public static void initialize(Day day) {
+	JFrame frame = new JFrame(day.toString());
 
-	JFrame frame = new JFrame("Day View");
 	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
-	DayView view = new DayView(new Day(new GregorianCalendar(year, month, day), db), true);
+	DayView view = new DayView(day, true);
 	frame.add(view, BorderLayout.CENTER);
 	frame.pack();
 	frame.setVisible(true);
@@ -58,6 +60,10 @@ public class DayView extends JPanel {
 	    });
     }
 
+    public static void initialize(int year, int month, int day) {
+	initialize(new Day(new GregorianCalendar(year, month, day), new DBManager("testuser")));
+    }
+
     /*
      * Create the view to show the current day.
      *
@@ -68,7 +74,21 @@ public class DayView extends JPanel {
 	super(new BorderLayout());
 
 	setBorder(BorderFactory.createLineBorder(Color.black));
-	setPreferredSize(new Dimension(200, 200));
+	setPreferredSize(new Dimension(400, 400));
+	setCursor(new Cursor(Cursor.HAND_CURSOR));
+	addMouseListener(new MouseListener() {
+		public void mousePressed(MouseEvent e) {
+		}
+		public void mouseReleased(MouseEvent e) {
+		}
+		public void mouseEntered(MouseEvent e) {
+		}
+		public void mouseExited(MouseEvent e) {
+		}
+		public void mouseClicked(MouseEvent e) {
+		    initialize(day);
+		}
+	    });
 
 	// label showing day number
 	JLabel label = new JLabel("" + day.getDayNumber());
