@@ -26,6 +26,7 @@ public class DBManager {
 	 * Get the event data from the date.
 	 *
 	 * @param date The date to get in the database.
+	 * @return String value of event in the database.
 	 */ 
 	public String getEventFromDate(Date date) {
 		//Initialize JDBC variables

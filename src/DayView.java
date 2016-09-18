@@ -37,7 +37,9 @@ public class DayView extends JPanel {
     /**
      * Initialize a DayView window.
      * This is a helper function used by the StartMenu.
-     *
+     * @param day The day to create the day view for.
+     * @param isPopup Whether to open in "popup" mode,
+     *                that is whether to have a back menu shown.
      */
     public static void initialize(Day day, boolean isPopup) {
 	JFrame frame = new JFrame(day.toString());
@@ -66,6 +68,7 @@ public class DayView extends JPanel {
      * @param year The year to be shown for example 2016.
      * @param month The month to be shown for example 10 for September.
      * @param day The day to be shown for example 18.
+     * @param isPopup Whether to use popup mode in this day view.
      */
     public static void initialize(int year, int month, int day, boolean isPopup) {
 	initialize(new Day(new GregorianCalendar(year, month, day), new DBManager("testuser")), isPopup);
@@ -76,6 +79,9 @@ public class DayView extends JPanel {
      *
      * @param day The object to use to get info on the day.
      * @param needsText Whether to display the text area of the agenda.
+     * @param isPopup Enable "popup" mode for this day view, this means
+     *                That the window will close when the "save" button
+     *                is pressed.
      */ 
     public DayView(Day day, boolean needsText, boolean isPopup) {
 	super(new BorderLayout());

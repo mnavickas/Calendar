@@ -34,6 +34,7 @@ public class MonthView extends JPanel {
      * Initialize the window for a Month View.
      * Used as a helper by StartMenu.
      *
+     * @param month The object that stores information on the displayed month. 
      */
     public static void initialize(Month month) {
 	DBManager db = new DBManager("testuser");
@@ -71,11 +72,10 @@ public class MonthView extends JPanel {
 
     /**
      * Creates a month view based on information about the month
-     * @param year The year of the month, for example 2016.
-     * @param month The month number to use, for example 10 for September.
-                    0 being Jan, 11 being Dec.
+     * @param month The month object to use.
      * @param needsHeader Whether to display a header showing Sunday to
      *                    Saturday.
+     * @param db Database to load user data from.
      */
     public MonthView(Month month, boolean needsHeader, DBManager db) {
 	super(new BorderLayout());
