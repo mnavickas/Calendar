@@ -255,7 +255,10 @@ public class StartMenu extends JPanel
                                 monthChoice= (String) selectMonth.getSelectedItem();
                         	viewChoice= (String) viewType.getSelectedItem();
 
-				String userText = userField.getText().substring(0, 16);
+				String userText = userField.getText();
+				if (userText.length() > 16) {
+				    userText = userText.substring(0, 16);
+				}
 
                         	mainWindowInstance = new StartMenu();
                         	disposeframe();
