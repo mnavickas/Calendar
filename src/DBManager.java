@@ -78,16 +78,17 @@ public class DBManager {
 		//Initialize JDBC variables
 		Connection con = null;
 		PreparedStatement ps = null;
-		
-		try {
+
+		if (event != "") {
+		    try {
 			//Attempt to connect to database
 			con = DriverManager.getConnection(URL, USER, PASS);
 			
 			//Prepare our SQL
 			ps = con.prepareStatement("REPLACE INTO cal_date_event "
-					+ "(user_id, date, event) "
-					+ "VALUES "
-					+ "(?, ?, ?);");
+						  + "(user_id, date, event) "
+						  + "VALUES "
+						  + "(?, ?, ?);");
 			//Input our selected date, user, and event
 			ps.setString(1, this.dbUser);
 			ps.setDate(2, date);
@@ -95,12 +96,13 @@ public class DBManager {
 			
 			//Execute the query
 			ps.execute();
-		} catch (SQLException e) {
-		    System.out.println("Cannot connect the database!" + e);
-		} finally {
-		    try {
-			con.close();
-		    } catch (SQLException e) {}
+		    } catch (SQLException e) {
+			System.out.println("Cannot connect the database!" + e);
+		    } finally {
+			try {
+			    con.close();
+			} catch (SQLException e) {}
+		    }
 		}
 	}
 }
