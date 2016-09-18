@@ -80,4 +80,17 @@ public class Day {
 	// http://stackoverflow.com/questions/3574811/how-can-i-get-a-date-from-my-calendar
 	return new java.sql.Date(cal.getTime().getTime());
     }
+
+
+    // used for get day name
+    private String[] months = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+
+
+    /*
+     * Get the name of the week (Sunday, Monday, Tuesday...)
+     * @return The name of the week in string form.
+     */
+    public String getDayName() {
+	return months[this.cal.get(Calendar.DAY_OF_WEEK) - Calendar.SUNDAY];
+    }
 }

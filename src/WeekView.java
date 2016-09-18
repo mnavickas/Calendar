@@ -113,8 +113,8 @@ public class WeekView extends JPanel {
 
 	    // setup a header with each month
 	    JPanel panel1 = new JPanel(new GridLayout(1, 7));
-	    for (String m : months) {
-		JLabel label = new JLabel(m);
+	    for (Day day : week.getDays()) {
+		JLabel label = new JLabel(day.getDayName());
 		panel1.add(label);
 	    }
 	    panel4.add(panel1, BorderLayout.SOUTH);
