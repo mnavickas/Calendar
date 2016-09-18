@@ -101,6 +101,7 @@ public class DayView extends JPanel {
 	    agendaText.setWrapStyleWord(true);
 	    agendaText.setPreferredSize(new Dimension(200, 200));
 
+	    // progressive saving is disable because it slows down
 	    agendaText.getDocument().addDocumentListener(new DocumentListener() {
 		    public void changedUpdate(DocumentEvent documentEvent) {
 			// saveText(documentEvent);
@@ -137,6 +138,7 @@ public class DayView extends JPanel {
 			} catch (BadLocationException e) {
 			    text = "";
 			}
+			day.setAgenda(text);
 		    }
 		});
 	}

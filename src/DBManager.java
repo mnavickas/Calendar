@@ -52,8 +52,9 @@ public class DBManager {
 			//Execute the query
 			rs = ps.executeQuery();
 
-			rs.next();
-			retVal = rs.getString("event");
+			if (rs.next()) {
+				retVal = rs.getString("event");
+			}
 		} catch (SQLException e) {
 		    System.out.println("Cannot connect the database!" + e);
 		} finally {
