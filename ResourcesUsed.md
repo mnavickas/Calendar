@@ -17,6 +17,7 @@ Java package structure based on information available at http://www.jarticles.co
 * http://stackoverflow.com/questions/9650874/java-swing-obtain-window-jframe-from-inside-a-jpanel
 * http://stackoverflow.com/questions/2839321/connect-java-to-a-mysql-
 * http://stackoverflow.com/questions/58939/jcombobox-selection-change-listener
+* http://stackoverflow.com/questions/34822301/return-value-of-filled-jcombobox-and-using-the-values-to-fill-jtextfield
 
 ## MySQL References
 * http://dev.mysql.com/doc/refman/5.7/en/insert-on-duplicate.html
