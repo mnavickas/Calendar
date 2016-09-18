@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.JOptionPane;
-
+import javax.swing.JTextField;
 
 /**
  * StartMenu class
@@ -220,12 +220,28 @@ public class StartMenu extends JPanel
                 selectMonth.addActionListener(cbActionListener);
 
 
+		// user input label
+		JLabel userLabel = new JLabel("User name to use: ");
+		gc.anchor = GridBagConstraints.LINE_END;
+                gc.gridx = 0;
+                gc.gridy = 2;
+                add(userLabel,gc);
+
+		// user input field
+		JTextField userField = new JTextField("testuser", 20);
+
+		// from http://stackoverflow.com/questions/4527604/jtextfield-only-shows-as-a-slit-using-gridbaglayout-need-help
+		userField.setMinimumSize(userField.getPreferredSize());
+
+		gc.anchor = GridBagConstraints.LINE_START;
+                gc.gridx = 1;
+                gc.gridy = 2;
 
 
                 final JButton button = new JButton("Submit");
                 gc.anchor = GridBagConstraints.LINE_START;
                 gc.gridx = 1;
-                gc.gridy = 2;
+                gc.gridy = 3;
                 add(button,gc);
 
                 button.addActionListener(new ActionListener()
@@ -239,7 +255,7 @@ public class StartMenu extends JPanel
                         	viewChoice= (String) viewType.getSelectedItem();
                         	mainWindowInstance = new StartMenu();
                         	disposeframe();
-                        	toMainProgram(viewChoice,monthChoice,dayChoice);
+                        	toMainProgram(viewChoice,monthChoice,dayChoice,userField.getText());
                         }
                 });
 
@@ -254,10 +270,13 @@ public class StartMenu extends JPanel
          * @param dc converts the string of days to the appropriate integer form.
          * @param year sets the value of the year depending on the month of the shcool year.
          * @param view is a string that determines which viewtype class will initialize
+         * @param username The username to use for the database.
         */
         
-        public static void toMainProgram(String view, String month, String day)
+        //To Main Program
+        public static void toMainProgram(String view, String month, String day, String username)
         {
+                DBManager db = new DBManager(username);
 
                 int mc = 0;
                 int dc = Integer.parseInt(day);
@@ -314,20 +333,20 @@ public class StartMenu extends JPanel
                 }
                 if(view=="Yearly View")
                 {
-                        YearView.initialize();
+                        YearView.initialize(db);
                 }
 
                 if(view=="Monthly View")
                 {
-                        MonthView.initialize(year,mc);
+		    MonthView.initialize(year,mc,db);
                 }
                 if(view=="Weekly View")
                 {
-                        WeekView.initialize(year, mc, dc);
+		    WeekView.initialize(year, mc, dc, db);
                 }
                 if(view=="Daily View")
                 {
-                        DayView.initialize(year, mc, dc, false);
+		    DayView.initialize(year, mc, dc, false, db);
                 }
 
         }
