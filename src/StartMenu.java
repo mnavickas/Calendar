@@ -236,6 +236,7 @@ public class StartMenu extends JPanel
 		gc.anchor = GridBagConstraints.LINE_START;
                 gc.gridx = 1;
                 gc.gridy = 2;
+		add(userField,gc);
 
 
                 final JButton button = new JButton("Submit");
