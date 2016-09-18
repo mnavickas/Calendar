@@ -45,6 +45,7 @@ public class DayView extends JPanel {
 	JFrame frame = new JFrame(day.toString());
 
 	if (isPopup) {
+	    frame.setLocationRelativeTo(null);
 	    frame.setAlwaysOnTop(true);
 	}
 
