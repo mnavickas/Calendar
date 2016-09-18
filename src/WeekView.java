@@ -33,10 +33,12 @@ public class WeekView extends JPanel {
     public static void initialize(int year, int month, int day) {
 	JFrame frame = new JFrame("Day View");
 
+	DBManager db = new DBManager("testuser");
+
 	// initialize the week from params
 	Calendar firstDay = new GregorianCalendar(year, month, day);
-	Week week = new Week(firstDay);
-	WeekView view = new WeekView(week, true, true);
+	Week week = new Week(firstDay, db);
+	WeekView view = new WeekView(week, true, false);
 	frame.add(view, BorderLayout.CENTER);
 
 	// back button

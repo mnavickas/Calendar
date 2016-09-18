@@ -37,7 +37,8 @@ public class MonthView extends JPanel {
      *              September.
      */
     public static void initialize(int year, int month) {
-	MonthView view = new MonthView(year, month, true);
+	DBManager db = new DBManager("testuser");
+	MonthView view = new MonthView(year, month, true, db);
 
 	JFrame frame = new JFrame(view.monthName);
 
@@ -68,7 +69,7 @@ public class MonthView extends JPanel {
      *                    Saturday.
      */
     // MonthView is a panel for showing the month
-    public MonthView(int year, int month, boolean needsHeader) {
+    public MonthView(int year, int month, boolean needsHeader, DBManager db) {
 	super(new BorderLayout());
 
 	// set up a calendar from the given year, month
@@ -97,7 +98,7 @@ public class MonthView extends JPanel {
 	days = new DayView[35];
 	for (int i = 0; i < 35; i++) {
 	    Calendar cal = new GregorianCalendar(year, month, 2 + i - dayOfMonth);
-	    days[i] = new DayView(new Day(cal), false);
+	    days[i] = new DayView(new Day(cal, db), false);
 
 	    // this day is not in the month!
 	    if (month != cal.get(Calendar.MONTH)) {

@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 
 import java.util.Calendar;
 
+import java.sql.Date;
+
 /*
  * Day class
  *
@@ -20,30 +22,19 @@ import java.util.Calendar;
 public class Day {
     // member variables
     private Calendar cal;
-    private String fileName;
-    public String dayContents;
-
-    // for file I/O
-    FileReader fr = null;
-    FileWriter fw = null;
-    BufferedReader br = null;
-    BufferedWriter bw = null;
+    private DBManager db;
+    private String user;
 
     /*
      * Instantiate a Day.
      * @param cal The java.util.Calendar object to use for that day.
      *            Seconds and hours are ignored.
      */
-    public Day(Calendar cal)
+    public Day(Calendar cal, DBManager db)
     {
 	this.cal = cal;
-
-	// date will be in form MMDD
-	this.fileName = ""
-	    + String.format("%02d", cal.get(Calendar.MONTH))
-	    + String.format("%02d", cal.get(Calendar.DAY_OF_MONTH));
-
-	this.dayContents = "";
+	this.db = db;
+	this.user = "testuser";
     }
 
     /*
@@ -51,7 +42,7 @@ public class Day {
      * @return String The agenda
      */
     public String getAgenda() {
-	return this.dayContents;
+	return this.db.getEventFromDate(this.getDate());
     }
 
     /*
@@ -59,19 +50,7 @@ public class Day {
      * @param agenda The agenda to set
      */
     public void setAgenda(String agenda) {
-	this.dayContents = agenda;
-    }
-
-    /*
-     * Edit the current day.
-     */
-    public void editDay() throws FileNotFoundException {
-	// if the file exists
-	if(this.fileName != "") {
-	    fr = new FileReader(this.fileName);
-	    //br = new BufferedReader(fr);
-	} else {
-	}
+	this.db.setEventToDate(this.getDate(), agenda);
     }
 
     /*
@@ -81,5 +60,14 @@ public class Day {
      */
     public int getDayNumber() {
 	return cal.get(Calendar.DAY_OF_MONTH);
+    }
+
+    /*
+     * Get the date.
+     * @return the date of this day
+     */
+    public java.sql.Date getDate() {
+	// http://stackoverflow.com/questions/3574811/how-can-i-get-a-date-from-my-calendar
+	return new java.sql.Date(cal.getTime().getTime());
     }
 }

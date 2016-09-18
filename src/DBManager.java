@@ -15,13 +15,19 @@ public class DBManager {
 	private final String USER = "layer";
 	private final String PASS = "loganayer";
 
+	// user for database
+	private String dbUser;
+
+	public DBManager(String dbUser) {
+		this.dbUser = dbUser;
+	}
+
 	/*
 	 * Get the event data from the date.
 	 *
 	 * @param date The date to get in the database.
-	 * @param user The current user.
 	 */ 
-	public String getEventFromDate(Date date, String user) throws SQLException {
+	public String getEventFromDate(Date date) {
 		//Initialize JDBC variables
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -41,22 +47,19 @@ public class DBManager {
 					+ "AND i.user_id = ?;");
 			//Input our selected date and user
 			ps.setDate(1, date);
-			ps.setString(2, user);
+			ps.setString(2, this.dbUser);
 			
 			//Execute the query
 			rs = ps.executeQuery();
-			
-			//Loop through our results
-			while (rs.next()) {
-				//Add the event to the return value
-				retVal += rs.getString("event");
-				//Separate by a new line if other events present
-				retVal += "\n";
-			}
+
+			rs.next();
+			retVal = rs.getString("event");
 		} catch (SQLException e) {
 		    System.out.println("Cannot connect the database!" + e);
 		} finally {
+		    try {
 			con.close();
+		    } catch (SQLException e) {}
 		}
 		
 		//Return our string of events
@@ -67,10 +70,9 @@ public class DBManager {
 	 * Set the event for a date.
 	 *
 	 * @param date The date to set.
-	 * @param user The user to access in the database.
 	 * @param event The event to store.
 	 */
-	public void setEventToDate(Date date, String user, String event) throws SQLException{
+	public void setEventToDate(Date date, String event) {
 		//Initialize JDBC variables
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -80,12 +82,12 @@ public class DBManager {
 			con = DriverManager.getConnection(URL, USER, PASS);
 			
 			//Prepare our SQL
-			ps = con.prepareStatement("INSERT INTO cal_date_event "
+			ps = con.prepareStatement("REPLACE INTO cal_date_event "
 					+ "(user_id, date, event) "
 					+ "VALUES "
 					+ "(?, ?, ?);");
 			//Input our selected date, user, and event
-			ps.setString(1, user);
+			ps.setString(1, this.dbUser);
 			ps.setDate(2, date);
 			ps.setString(3, event);
 			
@@ -94,8 +96,9 @@ public class DBManager {
 		} catch (SQLException e) {
 		    System.out.println("Cannot connect the database!" + e);
 		} finally {
+		    try {
 			con.close();
+		    } catch (SQLException e) {}
 		}
 	}
-	
 }

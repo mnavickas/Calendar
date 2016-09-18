@@ -11,18 +11,19 @@ public class Week {
     /*
      * Construct a week from its first day.
      * @param cal the Calendar date to use.
+     * @param db Database to lookup from.
      */ 
-    public Week(Calendar cal) {
+    public Week(Calendar cal, DBManager db) {
 	// initialize days
 	days = new Day[7];
 
 	// set the first day to the given calendar
-	days[0] = new Day((Calendar) cal.clone());
+	days[0] = new Day((Calendar) cal.clone(), db);
 
 	// add six more days
 	for (int i = 1; i < 7; i++) {
 	    cal.add(Calendar.DATE, 1);
-	    days[i] = new Day((Calendar) cal.clone());
+	    days[i] = new Day((Calendar) cal.clone(), db);
 	}
     }
 

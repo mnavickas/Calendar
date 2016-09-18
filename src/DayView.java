@@ -16,6 +16,8 @@ import javax.swing.BorderFactory;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.JButton;
+import javax.swing.text.Document;
+import javax.swing.text.BadLocationException;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -37,16 +39,18 @@ public class DayView extends JPanel {
      * @param day The day to be shown for example 18.
      */
     public static void initialize(int year, int month, int day) {
+	DBManager db = new DBManager("testuser");
+
 	JFrame frame = new JFrame("Day View");
 	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
-	DayView view = new DayView(new Day(new GregorianCalendar(year, month, day)), true);
+	DayView view = new DayView(new Day(new GregorianCalendar(year, month, day), db), true);
 	frame.add(view, BorderLayout.CENTER);
 	frame.pack();
 	frame.setVisible(true);
 
-	JButton button = new JButton("BACK");
-	frame.add(button,BorderLayout.NORTH);
-	button.addActionListener(new ActionListener() {
+	JButton button1 = new JButton("BACK");
+	frame.add(button1,BorderLayout.NORTH);
+	button1.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
 		    StartMenu.initialize();
 		    frame.dispose();
@@ -64,27 +68,57 @@ public class DayView extends JPanel {
 	super(new BorderLayout());
 
 	setBorder(BorderFactory.createLineBorder(Color.black));
+	setPreferredSize(new Dimension(200, 200));
 
 	// label showing day number
 	JLabel label = new JLabel("" + day.getDayNumber());
-	add(label, BorderLayout.PAGE_START);
+	add(label, BorderLayout.NORTH);
 
 	// editable agenda
 	if (needsText) {
 	    JTextArea agendaText = new JTextArea(day.getAgenda());
 	    agendaText.setLineWrap(true);
 	    agendaText.setWrapStyleWord(true);
-	    agendaText.setPreferredSize(new Dimension(100, 100));
+	    agendaText.setPreferredSize(new Dimension(200, 200));
 
 	    agendaText.getDocument().addDocumentListener(new DocumentListener() {
 		    public void changedUpdate(DocumentEvent documentEvent) {
+			// saveText(documentEvent);
 		    }
 		    public void insertUpdate(DocumentEvent documentEvent) {
+			// saveText(documentEvent);
 		    }
 		    public void removeUpdate(DocumentEvent documentEvent) {
+			// saveText(documentEvent);
+		    }
+		    private void saveText(DocumentEvent event) {
+			Document document = event.getDocument();
+			int length = document.getLength();
+			String text = "";
+			try {
+			    text = document.getText(0, length);
+			} catch (BadLocationException e) {
+			    text = "";
+			}
+			day.setAgenda(text);
 		    }
 		});
 	    add(agendaText, BorderLayout.CENTER);
+
+	    JButton button2 = new JButton("SAVE");
+	    add(button2,BorderLayout.NORTH);
+	    button2.addActionListener(new ActionListener() {
+		    public void actionPerformed(ActionEvent arg0) {
+			Document document = agendaText.getDocument();
+			int length = document.getLength();
+			String text = "";
+			try {
+			    text = document.getText(0, length);
+			} catch (BadLocationException e) {
+			    text = "";
+			}
+		    }
+		});
 	}
     }
 }
