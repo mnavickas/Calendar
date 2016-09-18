@@ -38,9 +38,9 @@ public class YearView extends JPanel
 
         /**
          * Creates an instance of the YearView within a JFrame
-         * @return none
+         * @return db The database to load from
         */
-        public static void initialize()
+        public static void initialize(DBManager db)
         {
                 JFrame frame = new JFrame("Year View");
 
@@ -70,14 +70,12 @@ public class YearView extends JPanel
 
         /**
          * Yearview constructor
-         * @param none
+         * @param db The database to load days from.
         */
-        public YearView()
+        public YearView(DBManager db)
         {
 
                 super( new BorderLayout() );
-
-		DBManager db = new DBManager("testuser");
 
                 this.panelNorth = new JPanel( new GridLayout(2,1) );
 
