@@ -43,7 +43,7 @@ public class MonthView extends JPanel {
 	JFrame frame = new JFrame(view.monthName);
 
 	// back button
-	JButton button = new JButton("BACK");
+	JButton button = new JButton("Back to main menu");
 	frame.add(button,BorderLayout.NORTH);
 
 	// actual view

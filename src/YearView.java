@@ -48,8 +48,8 @@ public class YearView extends JPanel
 
 
                 // returns to the main start menu
-                YearView view = new YearView();
-                JButton button = new JButton("BACK");
+                YearView view = new YearView(db);
+                JButton button = new JButton("Back to main menu");
                 frame.add(button,BorderLayout.NORTH);
                 frame.add(view, BorderLayout.CENTER);
                 frame.pack();
