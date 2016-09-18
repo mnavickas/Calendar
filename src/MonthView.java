@@ -22,11 +22,12 @@ import java.util.GregorianCalendar;
  */
 public class MonthView extends JPanel {
     // used for headers
-    String[] dayNames = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+    private String[] dayNames = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
     // contains all days in the month
-    DayView[] days;
+    private DayView[] days;
 
+    // used to set window name
     public String monthName;
 
     /*
