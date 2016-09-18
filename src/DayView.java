@@ -44,6 +44,10 @@ public class DayView extends JPanel {
     public static void initialize(Day day, boolean isPopup) {
 	JFrame frame = new JFrame(day.toString());
 
+	if (isPopup) {
+	    frame.setAlwaysOnTop(true);
+	}
+
 	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
 	DayView view = new DayView(day, true, isPopup);
 	frame.add(view, BorderLayout.CENTER);
