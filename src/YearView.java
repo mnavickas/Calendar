@@ -96,7 +96,7 @@ public class YearView extends JPanel
                                 curYear = 2017;
                         }
 
-                        this.months[A] = new MonthView( curYear, academicMonths[A], false, db );
+                        this.months[A] = new MonthView( new Month(curYear, academicMonths[A]), false, db );
 
                         JPanel panel1 = new JPanel(new GridLayout(1,1));
                         panel1.add( new JLabel(academicMonthsStrings[A] + " " + Integer.toString(curYear) ) );

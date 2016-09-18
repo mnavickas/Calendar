@@ -126,6 +126,7 @@ public class DayView extends JPanel {
 		});
 	    add(agendaText, BorderLayout.CENTER);
 
+	    // save button
 	    JButton button2 = new JButton("SAVE");
 	    add(button2,BorderLayout.NORTH);
 	    button2.addActionListener(new ActionListener() {
