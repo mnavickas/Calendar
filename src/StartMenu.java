@@ -221,7 +221,7 @@ public class StartMenu extends JPanel
 
 
 		// user input label
-		JLabel userLabel = new JLabel("User name to use: ");
+		JLabel userLabel = new JLabel("User name to use (16 char limit): ");
 		gc.anchor = GridBagConstraints.LINE_END;
                 gc.gridx = 0;
                 gc.gridy = 2;
@@ -254,9 +254,12 @@ public class StartMenu extends JPanel
                         	dayChoice= (String) selectDay.getSelectedItem();
                                 monthChoice= (String) selectMonth.getSelectedItem();
                         	viewChoice= (String) viewType.getSelectedItem();
+
+				String userText = userField.getText().substring(0, 16);
+
                         	mainWindowInstance = new StartMenu();
                         	disposeframe();
-                        	toMainProgram(viewChoice,monthChoice,dayChoice,userField.getText());
+                        	toMainProgram(viewChoice,monthChoice,dayChoice,userText);
                         }
                 });
 
