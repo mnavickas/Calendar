@@ -73,9 +73,10 @@ public class DayView extends JPanel {
      * @param month The month to be shown for example 10 for September.
      * @param day The day to be shown for example 18.
      * @param isPopup Whether to use popup mode in this day view.
+     * @param db The database to use.
      */
-    public static void initialize(int year, int month, int day, boolean isPopup) {
-	initialize(new Day(new GregorianCalendar(year, month, day), new DBManager("testuser")), isPopup);
+    public static void initialize(int year, int month, int day, boolean isPopup, DBManager db) {
+	initialize(new Day(new GregorianCalendar(year, month, day), db), isPopup);
     }
 
     /**

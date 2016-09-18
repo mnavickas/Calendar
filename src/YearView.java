@@ -17,7 +17,11 @@ import java.util.GregorianCalendar;
 
 
 
-
+/**
+ * YearView shows all of the months in an academic year.
+ *
+ * MonthView is embedded within it.
+ */
 public class YearView extends JPanel
 {
 
@@ -32,13 +36,17 @@ public class YearView extends JPanel
 
 
 
-        public static void initialize()
+        /**
+         * Create the year view window.
+         * @param db The database to use.
+         */  
+        public static void initialize(DBManager db)
         {
                 JFrame frame = new JFrame("Year View");
 
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-                YearView view = new YearView();
+                YearView view = new YearView(db);
                 JButton button = new JButton("BACK");
                 frame.add(button,BorderLayout.NORTH);
                 frame.add(view, BorderLayout.CENTER);
@@ -56,11 +64,13 @@ public class YearView extends JPanel
         }
 
 
-        public YearView()
+        /**
+         * Create the year view.
+         * @param db The database to use.
+         */  
+        public YearView(DBManager db)
         {
                 super( new BorderLayout() );
-
-		DBManager db = new DBManager("testuser");
 
                 this.panelNorth = new JPanel( new GridLayout(2,1) );
 

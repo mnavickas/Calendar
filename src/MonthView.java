@@ -35,9 +35,9 @@ public class MonthView extends JPanel {
      * Used as a helper by StartMenu.
      *
      * @param month The object that stores information on the displayed month. 
+     * @param db The database to use.
      */
-    public static void initialize(Month month) {
-	DBManager db = new DBManager("testuser");
+    public static void initialize(Month month, DBManager db) {
 	MonthView view = new MonthView(month, true, db);
 
 	JFrame frame = new JFrame(view.monthName);
@@ -65,9 +65,10 @@ public class MonthView extends JPanel {
      * @param year Year to use for the month for example 2016.
      * @param month Month number to use for the month for example 10 for
      *              September.
+     * @param db The database to use.
      */
-    public static void initialize(int year, int month) {
-	initialize(new Month(year, month));
+    public static void initialize(int year, int month, DBManager db) {
+	initialize(new Month(year, month), db);
     }
 
     /**
@@ -101,7 +102,7 @@ public class MonthView extends JPanel {
 			JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(parent);
 			topFrame.dispose();
 
-			initialize(month.getPreviousMonth());
+			initialize(month.getPreviousMonth(), db);
 		    }
 		});
 	    panel4.add(prevButton, BorderLayout.WEST);
@@ -112,7 +113,7 @@ public class MonthView extends JPanel {
 			JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(parent);
 			topFrame.dispose();
 
-			initialize(month.getNextMonth());
+			initialize(month.getNextMonth(), db);
 		    }
 		});
 	    panel4.add(nextButton, BorderLayout.EAST);

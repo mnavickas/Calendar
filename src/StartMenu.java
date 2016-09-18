@@ -13,9 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.JOptionPane;
-
-
-
+import javax.swing.JTextField;
 
 public class StartMenu extends JPanel
 {
@@ -48,7 +46,7 @@ public class StartMenu extends JPanel
                 {
         			public void run(){
         			menu = new StartMenuFrame("Calendar");
-        			menu.setSize(850,700);
+        			menu.setSize(700,400);
         			menu.setResizable(true); //http://stackoverflow.com/questions/18031704/jframe-how-to-disable-window-resizing
         			menu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
         			menu.setVisible(true);
@@ -80,9 +78,6 @@ public class StartMenu extends JPanel
         public StartMenu()
         {
 
-                Dimension size = getPreferredSize();
-                size.width = 500;
-                setPreferredSize(size);
                 JLabel date = new JLabel("Select a date to start with: ");
                 JLabel view = new JLabel("Select a View to start with: ");
 
@@ -174,12 +169,28 @@ public class StartMenu extends JPanel
                 selectMonth.addActionListener(cbActionListener);
 
 
+		// user input label
+		JLabel userLabel = new JLabel("User name to use: ");
+		gc.anchor = GridBagConstraints.LINE_END;
+                gc.gridx = 0;
+                gc.gridy = 2;
+                add(userLabel,gc);
 
+		// user input field
+		JTextField userField = new JTextField("testuser", 20);
+
+		// from http://stackoverflow.com/questions/4527604/jtextfield-only-shows-as-a-slit-using-gridbaglayout-need-help
+		userField.setMinimumSize(userField.getPreferredSize());
+
+		gc.anchor = GridBagConstraints.LINE_START;
+                gc.gridx = 1;
+                gc.gridy = 2;
+                add(userField,gc);
 
                 final JButton button = new JButton("Submit");
                 gc.anchor = GridBagConstraints.LINE_START;
                 gc.gridx = 1;
-                gc.gridy = 2;
+                gc.gridy = 3;
                 add(button,gc);
 
                 button.addActionListener(new ActionListener()
@@ -193,7 +204,7 @@ public class StartMenu extends JPanel
                         	viewChoice= (String) viewType.getSelectedItem();
                         	mainWindowInstance = new StartMenu();
                         	disposeframe();
-                        	toMainProgram(viewChoice,monthChoice,dayChoice);
+                        	toMainProgram(viewChoice,monthChoice,dayChoice, userField.getText());
                         }
                 });
 
@@ -203,8 +214,10 @@ public class StartMenu extends JPanel
 
 
         //To Main Program
-        public static void toMainProgram(String view, String month, String day)
+    public static void toMainProgram(String view, String month, String day, String username)
         {
+
+                DBManager db = new DBManager(username);
 
                 int mc = 0;
                 int dc = Integer.parseInt(day);
@@ -261,20 +274,20 @@ public class StartMenu extends JPanel
                 }
                 if(view=="Yearly View")
                 {
-                        YearView.initialize();
+                        YearView.initialize(db);
                 }
 
                 if(view=="Monthly View")
                 {
-                        MonthView.initialize(year,mc);
+		    MonthView.initialize(year,mc, db);
                 }
                 if(view=="Weekly View")
                 {
-                        WeekView.initialize(year, mc, dc);
+		    WeekView.initialize(year, mc, dc, db);
                 }
                 if(view=="Daily View")
                 {
-		    DayView.initialize(year, mc, dc, false);
+		    DayView.initialize(year, mc, dc, false, db);
                 }
 
         }
