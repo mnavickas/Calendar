@@ -12,7 +12,7 @@ import java.util.Calendar;
 
 import java.sql.Date;
 
-/*
+/**
  * Day class
  *
  * "Day" represents a single day. It determines where on the calendar to put
@@ -25,7 +25,7 @@ public class Day {
     private DBManager db;
     private String user;
 
-    /*
+    /**
      * Instantiate a Day.
      * @param cal The java.util.Calendar object to use for that day.
      *            Seconds and hours are ignored.
@@ -37,7 +37,7 @@ public class Day {
 	this.user = "testuser";
     }
 
-    /*
+    /**
      * Get the agenda for this day.
      * @return String The agenda
      */
@@ -45,7 +45,7 @@ public class Day {
 	return this.db.getEventFromDate(this.getDate());
     }
 
-    /*
+    /**
      * Set the agenda for this day.
      * @param agenda The agenda to set
      */
@@ -53,7 +53,7 @@ public class Day {
 	this.db.setEventToDate(this.getDate(), agenda);
     }
 
-    /*
+    /**
      * Get the day's number in the current month.
      * This is used by the day view to display each numbered day.
      * @return int This returns the day's number in the month.
@@ -62,7 +62,7 @@ public class Day {
 	return cal.get(Calendar.DAY_OF_MONTH);
     }
 
-    /*
+    /**
      * Get the string for the date.
      * @return date in string form
      */
@@ -71,7 +71,7 @@ public class Day {
 	return new SimpleDateFormat("dd-MMM-yyyy").format(this.cal.getTime());
     }
 
-    /*
+    /**
      * Get the date.
      * @return the date of this day
      */

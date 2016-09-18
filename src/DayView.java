@@ -26,7 +26,7 @@ import javax.swing.SwingUtilities;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-/*
+/**
  * DayView
  *
  * DayView creates the interface elements for one day in the calendar.
@@ -34,7 +34,7 @@ import java.util.GregorianCalendar;
 public class DayView extends JPanel {
     private Day day;
 
-    /*
+    /**
      * Initialize a DayView window.
      * This is a helper function used by the StartMenu.
      *
@@ -60,7 +60,7 @@ public class DayView extends JPanel {
 	}
     }
 
-    /*
+    /**
      * Same as above but with different parrameters.
      *
      * @param year The year to be shown for example 2016.
@@ -71,7 +71,7 @@ public class DayView extends JPanel {
 	initialize(new Day(new GregorianCalendar(year, month, day), new DBManager("testuser")), isPopup);
     }
 
-    /*
+    /**
      * Create the view to show the current day.
      *
      * @param day The object to use to get info on the day.

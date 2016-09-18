@@ -3,7 +3,7 @@ package calendar;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-/*
+/**
  * Data type for a month.
  */
 public class Month {
@@ -11,7 +11,7 @@ public class Month {
 
     private static String[] monthNames = { "January", "Feburary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
 
-    /*
+    /**
      * Construct a week from its first day.
      * @param year the year number
      * @param month the month number
@@ -32,7 +32,7 @@ public class Month {
 	return monthNames[cal.get(Calendar.MONTH)];
     }
 
-    /*
+    /**
      * The integer value of the first day of the month.
      * 0 for January, 11 for December, etc.
      */
@@ -40,7 +40,7 @@ public class Month {
 	return cal.get(Calendar.DAY_OF_WEEK);
     }
 
-    /*
+    /**
      * The integer value of the year.
      * @return year number
      */
@@ -48,7 +48,7 @@ public class Month {
 	return cal.get(Calendar.YEAR);
     }
 
-    /*
+    /**
      * Get the month number to use.
      * @return month number
      */
@@ -56,7 +56,7 @@ public class Month {
 	return cal.get(Calendar.MONTH);
     }
 
-    /*
+    /**
      * get the previous month
      * @return the next month
      */
@@ -66,7 +66,7 @@ public class Month {
 	return new Month(newCal);
     }
 
-    /*
+    /**
      * get the previous month
      * @return the previous month
      */

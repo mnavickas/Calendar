@@ -16,7 +16,7 @@ import javax.swing.SwingUtilities;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-/*
+/**
  * Display the days for a 7 day week period.
  */
 public class WeekView extends JPanel {
@@ -26,11 +26,11 @@ public class WeekView extends JPanel {
     // week object used to display
     private Week week;
 
-    /*
+    /**
      * Initialize the week from parameters. Helper function needed by StartMenu.
      * @param year The year to use for the week.
      * @param month The month to use for the week.
-     * @parma day The day to use for the week.
+     * @param day The day to use for the week.
      */
     public static void initialize(int year, int month, int day) {
 	// initialize the week from params
@@ -41,6 +41,11 @@ public class WeekView extends JPanel {
 	initialize(week);
     }
 
+    /**
+     * Create a week window from a week param
+     *
+     * @param week The week to display
+     */
     public static void initialize(Week week) {
 	JFrame frame = new JFrame(week.toString());
 
@@ -65,7 +70,7 @@ public class WeekView extends JPanel {
 	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
     }
 
-    /*
+    /**
      * Construct a week view from a week object.
      * @param week The week to display.
      * @param needsHeader Whether to display the Sunday-Saturday header.

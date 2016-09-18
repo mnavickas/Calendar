@@ -2,7 +2,7 @@ package calendar;
 
 import java.util.Calendar;
 
-/*
+/**
  * Date type for a week. 
  */
 public class Week {
@@ -10,7 +10,7 @@ public class Week {
     private DBManager db;
     private Day[] days;
 
-    /*
+    /**
      * Construct a week from its first day.
      * @param cal the Calendar date to use.
      * @param db Database to lookup from.
@@ -32,7 +32,7 @@ public class Week {
 	}
     }
 
-    /*
+    /**
      * Get the days in this week.
      * @return A list of 7 days.
      */
@@ -40,7 +40,7 @@ public class Week {
 	return days;
     }
 
-    /*
+    /**
      * Convert the week to a string.
      * @return string rep of week
      */
@@ -48,7 +48,7 @@ public class Week {
 	return "Week of " + days[0] + " to " + days[6];
     }
 
-    /*
+    /**
      * get the previous week
      * @return the week previously
      */
@@ -58,7 +58,7 @@ public class Week {
 	return new Week(newCal, this.db);
     }
 
-    /*
+    /**
      * get the next week
      * @return the next week
      */

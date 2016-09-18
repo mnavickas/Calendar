@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/*
+/**
  * DBManager handles reading and storing information in the database.
  */
 public class DBManager {
@@ -22,7 +22,7 @@ public class DBManager {
 		this.dbUser = dbUser;
 	}
 
-	/*
+        /**
 	 * Get the event data from the date.
 	 *
 	 * @param date The date to get in the database.
@@ -67,7 +67,7 @@ public class DBManager {
 		return retVal;
 	}
 
-	/*
+        /**
 	 * Set the event for a date.
 	 *
 	 * @param date The date to set.

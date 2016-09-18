@@ -17,7 +17,7 @@ import javax.swing.SwingUtilities;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-/*
+/**
  * Month view shows an interface for a month.
  */
 public class MonthView extends JPanel {
@@ -30,7 +30,7 @@ public class MonthView extends JPanel {
     // used to set window name
     public String monthName;
 
-    /*
+    /**
      * Initialize the window for a Month View.
      * Used as a helper by StartMenu.
      *
@@ -59,7 +59,7 @@ public class MonthView extends JPanel {
 	    });
     }
 
-    /*
+    /**
      * Helper legacy method
      * @param year Year to use for the month for example 2016.
      * @param month Month number to use for the month for example 10 for
@@ -69,7 +69,7 @@ public class MonthView extends JPanel {
 	initialize(new Month(year, month));
     }
 
-    /*
+    /**
      * Creates a month view based on information about the month
      * @param year The year of the month, for example 2016.
      * @param month The month number to use, for example 10 for September.
@@ -77,7 +77,6 @@ public class MonthView extends JPanel {
      * @param needsHeader Whether to display a header showing Sunday to
      *                    Saturday.
      */
-    // MonthView is a panel for showing the month
     public MonthView(Month month, boolean needsHeader, DBManager db) {
 	super(new BorderLayout());
 
