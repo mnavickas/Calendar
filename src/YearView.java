@@ -38,7 +38,7 @@ public class YearView extends JPanel
 
         /**
          * Creates an instance of the YearView within a JFrame
-         * @return db The database to load from
+         * @param db The database to load from
         */
         public static void initialize(DBManager db)
         {
