@@ -9,3 +9,9 @@ To run this project on Linux, type this into the shell:
 ```
 sh ./run.sh
 ```
+
+To run this project on Windows, type this command into the command prompt:
+
+```
+./run.bat
+```
