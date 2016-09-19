@@ -1,5 +1,6 @@
 @authors: James Muoghalu, Logan Ayer, Luke Weaver, Matthew Bauer
-This is a calendar for Software Engineering. 
+
+This is a calendar for EECS 448: Software Engineering at the University of Kansas. 
 
 ## Running
 
