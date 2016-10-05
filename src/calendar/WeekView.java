@@ -32,10 +32,10 @@ public class WeekView extends JPanel {
      * @param day The day to use for the week.
      * @param db The database to use.
      */
-    public static void initialize(int year, int month, int day, DBManager db) {
+    public static void initialize(int year, int month, int day) {
 	// initialize the week from params
 	Calendar firstDay = new GregorianCalendar(year, month, day);
-	Week week = new Week(firstDay, db);
+	Week week = new Week(firstDay);
 
 	initialize(week);
     }

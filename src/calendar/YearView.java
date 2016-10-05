@@ -41,7 +41,7 @@ public class YearView extends JPanel
          * Creates an instance of the YearView within a JFrame
          * @param db The database to load from
         */
-        public static void initialize(DBManager db)
+        public static void initialize()
         {
                 JFrame frame = new JFrame("Year View");
 
@@ -49,7 +49,7 @@ public class YearView extends JPanel
 
 
                 // returns to the main start menu
-                YearView view = new YearView(db);
+                YearView view = new YearView();
                 JButton button = new JButton("Back to main menu");
                 frame.add(button,BorderLayout.NORTH);
                 frame.add(view, BorderLayout.CENTER);
@@ -73,7 +73,7 @@ public class YearView extends JPanel
          * Yearview constructor
          * @param db The database to load days from.
         */
-        public YearView(DBManager db)
+        public YearView()
         {
 
                 super( new BorderLayout() );
@@ -112,7 +112,7 @@ public class YearView extends JPanel
                         }
 
                         // creates the month and adds it to the frame
-                        this.months[A] = new MonthView( new Month(curYear, academicMonths[A]), false, db );
+                        this.months[A] = new MonthView( new Month(curYear, academicMonths[A]), false);
 
                         JPanel panel1 = new JPanel(new GridLayout(1,1));
                         panel1.add( new JLabel(academicMonthsStrings[A] + " " + Integer.toString(curYear) ) );

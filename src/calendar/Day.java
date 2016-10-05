@@ -13,7 +13,6 @@ import java.util.Calendar;
 public class Day {
     // member variables
     private Calendar cal;
-    private DBManager db;
 
     /**
      * Instantiate a Day.
@@ -21,10 +20,9 @@ public class Day {
      *            Seconds and hours are ignored.
      * @param db  The db to use to store day information.
      */
-    public Day(Calendar cal, DBManager db)
+    public Day(Calendar cal)
     {
 	this.cal = cal;
-	this.db = db;
     }
 
     /**
@@ -32,7 +30,7 @@ public class Day {
      * @return String The agenda
      */
     public String getAgenda() {
-	return this.db.getEventFromDate(this.getDate());
+	return null;
     }
 
     /**
@@ -40,7 +38,7 @@ public class Day {
      * @param agenda The agenda to set
      */
     public void setAgenda(String agenda) {
-	this.db.setEventToDate(this.getDate(), agenda);
+	
     }
 
     /**
