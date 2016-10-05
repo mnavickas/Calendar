@@ -16,8 +16,8 @@ public final class FileIO {
 
 	/**
 	 * Write object to file
-	 * @param filepath
-	 * @param data to write
+	 * @param filepath filepath to write to
+	 * @param data data to write to file
 	 */
 	public static synchronized void writeToFile(String filepath, Object data){
 
@@ -38,7 +38,7 @@ public final class FileIO {
 
 	/**
 	 * Read JSONArray from File
-	 * @param filepath
+	 * @param filepath filepath to read from
 	 * @return JSONArray filled with events from file
 	 * @throws FileNotFoundException
 	 */
