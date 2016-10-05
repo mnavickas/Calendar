@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 /**
  * DBManager handles reading and storing information in the database.
+ * @deprecated
  */
 public class DBManager {
 	private final String URL = "jdbc:mysql://mysql.eecs.ku.edu:3306/layer";
@@ -27,6 +28,7 @@ public class DBManager {
 	 *
 	 * @param date The date to get in the database.
 	 * @return String value of event in the database.
+	 * @deprecated
 	 */ 
 	public String getEventFromDate(Date date) {
 		//Initialize JDBC variables
@@ -73,6 +75,7 @@ public class DBManager {
 	 *
 	 * @param date The date to set.
 	 * @param event The event to store.
+	 * @deprecated
 	 */
 	public void setEventToDate(Date date, String event) {
 		//Initialize JDBC variables
