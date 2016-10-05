@@ -1,32 +1,31 @@
 package calendar;
 
-import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 /**
  * Display the days for a 7 day week period.
  */
 public class WeekView extends JPanel {
-    // used for header
-    private String[] months = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
-    // week object used to display
-    private Week week;
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2250432841323024223L;
+
+	/**
      * Initialize the week from parameters. Helper function needed by StartMenu.
      * @param year The year to use for the week.
      * @param month The month to use for the week.

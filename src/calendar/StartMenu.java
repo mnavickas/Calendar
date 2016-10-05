@@ -11,9 +11,8 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 /**
  * StartMenu class
@@ -28,14 +27,18 @@ public class StartMenu extends JPanel
 
 
         /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7949455824962153307L;
+		/**
          * static variables to be used in the generation of the menu
         */
-        public static JComboBox viewType;
-        public static JComboBox selectMonth;
-        public static JComboBox selectDay;
-        public static JComboBox selectDay2;
-        public static JComboBox selectDay3;
-        public static JComboBox selectDay4;
+        public static JComboBox<String> viewType;
+        public static JComboBox<String> selectMonth;
+        public static JComboBox<String> selectDay;
+        public static JComboBox<String> selectDay2;
+        public static JComboBox<String> selectDay3;
+        public static JComboBox<String> selectDay4;
 
 
         /**
@@ -44,8 +47,7 @@ public class StartMenu extends JPanel
         private String monthChoice="";
         private String dayChoice="";
         private String viewChoice="";
-        private String yearChoice="";
-        private int choice =0;
+
 
 
 
@@ -135,8 +137,8 @@ public class StartMenu extends JPanel
                 JLabel date = new JLabel("Select a date to start with: ");
                 JLabel view = new JLabel("Select a View to start with: ");
 
-                viewType = new JComboBox(mwd); //select month,week, or day view
-                selectMonth = new JComboBox(months); //select month,week, or day view
+                viewType = new JComboBox<String>(mwd); //select month,week, or day view
+                selectMonth = new JComboBox<String>(months); //select month,week, or day view
 
 
                 setLayout(new GridBagLayout());
@@ -169,9 +171,9 @@ public class StartMenu extends JPanel
                 add(selectMonth,gc);
 
 
-                selectDay = new JComboBox(days); //select day to start with
-                selectDay2 = new JComboBox(days2); //select day to start with
-                selectDay3 = new JComboBox(days3); //select day to start with
+                selectDay = new JComboBox<String>(days); //select day to start with
+                selectDay2 = new JComboBox<String>(days2); //select day to start with
+                selectDay3 = new JComboBox<String>(days3); //select day to start with
 
                 gc.anchor = GridBagConstraints.CENTER;
                 gc.gridx = 1;

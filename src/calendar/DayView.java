@@ -1,30 +1,24 @@
 package calendar;
 
-import java.awt.GridLayout;
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
-import java.awt.Cursor;
+import java.awt.event.MouseListener;
+import java.util.GregorianCalendar;
 
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JLabel;
-import javax.swing.BorderFactory;
-import javax.swing.event.DocumentListener;
-import javax.swing.event.DocumentEvent;
-import javax.swing.JButton;
-import javax.swing.text.Document;
-import javax.swing.text.BadLocationException;
 import javax.swing.SwingUtilities;
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 
 /**
  * DayView
@@ -32,9 +26,14 @@ import java.util.GregorianCalendar;
  * DayView creates the interface elements for one day in the calendar.
  */
 public class DayView extends JPanel {
-    private Day day;
+
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6233076767005237805L;
+
+	/**
      * Initialize a DayView window.
      * This is a helper function used by the StartMenu.
      * @param day The day to create the day view for.
@@ -121,7 +120,7 @@ public class DayView extends JPanel {
 	    agendaText.setLineWrap(true);
 	    agendaText.setWrapStyleWord(true);
 	    agendaText.setPreferredSize(new Dimension(200, 200));
-
+	    /*
 	    // progressive saving is disable because it slows down
 	    agendaText.getDocument().addDocumentListener(new DocumentListener() {
 		    public void changedUpdate(DocumentEvent documentEvent) {
@@ -145,6 +144,7 @@ public class DayView extends JPanel {
 			day.setAgenda(text);
 		    }
 		});
+	    */
 	    add(agendaText, BorderLayout.CENTER);
 
 	    // save button

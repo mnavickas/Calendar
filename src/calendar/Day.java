@@ -1,16 +1,7 @@
 package calendar;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.FileNotFoundException;
-
 import java.text.SimpleDateFormat;
-
 import java.util.Calendar;
-
-import java.sql.Date;
 
 /**
  * Day class
@@ -23,7 +14,6 @@ public class Day {
     // member variables
     private Calendar cal;
     private DBManager db;
-    private String user;
 
     /**
      * Instantiate a Day.
@@ -35,7 +25,6 @@ public class Day {
     {
 	this.cal = cal;
 	this.db = db;
-	this.user = "testuser";
     }
 
     /**

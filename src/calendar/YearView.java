@@ -1,18 +1,15 @@
 package calendar;
 
-import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.BorderFactory;
 import javax.swing.JLabel;
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import javax.swing.JPanel;
 
 
 
@@ -25,7 +22,11 @@ import java.util.GregorianCalendar;
 public class YearView extends JPanel
 {
 
-        // member variables used by the class
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7000411652144795187L;
+		// member variables used by the class
         MonthView[] months;
         JPanel panelNorth;
         JPanel panelCenter;
@@ -82,9 +83,6 @@ public class YearView extends JPanel
                 this.panelCenter = new JPanel( new GridLayout(4,5) );
                 this.panelGap = new JPanel( new GridLayout(1,1) );
 
-                // odd number --> panelCenter and even number --> panelGap
-                // will help with alternating the sizes of adjacent panels
-                int whichPanel = 1;
 
                 // creates the view's label and adds it to the frame
                 this.yearViewTitle = new JLabel("Academic School Year: 2016/2017");

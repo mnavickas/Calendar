@@ -1,27 +1,30 @@
 package calendar;
 
-import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
-
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 /**
  * Month view shows an interface for a month.
  */
 public class MonthView extends JPanel {
-    // used for headers
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6960537733869460147L;
+
+	// used for headers
     private String[] dayNames = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
     // contains all days in the month
