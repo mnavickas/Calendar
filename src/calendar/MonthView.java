@@ -40,8 +40,8 @@ public class MonthView extends JPanel {
      * @param month The object that stores information on the displayed month. 
      * @param db The database to use.
      */
-    public static void initialize(Month month, DBManager db) {
-	MonthView view = new MonthView(month, true, db);
+    public static void initialize(Month month) {
+	MonthView view = new MonthView(month, true);
 
 	JFrame frame = new JFrame(view.monthName);
 
@@ -70,8 +70,8 @@ public class MonthView extends JPanel {
      *              September.
      * @param db The database to use.
      */
-    public static void initialize(int year, int month, DBManager db) {
-	initialize(new Month(year, month), db);
+    public static void initialize(int year, int month) {
+	initialize(new Month(year, month));
     }
 
     /**
@@ -81,7 +81,7 @@ public class MonthView extends JPanel {
      *                    Saturday.
      * @param db Database to load user data from.
      */
-    public MonthView(Month month, boolean needsHeader, DBManager db) {
+    public MonthView(Month month, boolean needsHeader) {
 	super(new BorderLayout());
 
 	JPanel parent = this;
@@ -105,7 +105,7 @@ public class MonthView extends JPanel {
 			JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(parent);
 			topFrame.dispose();
 
-			initialize(month.getPreviousMonth(), db);
+			initialize(month.getPreviousMonth());
 		    }
 		});
 	    panel4.add(prevButton, BorderLayout.WEST);
@@ -116,7 +116,7 @@ public class MonthView extends JPanel {
 			JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(parent);
 			topFrame.dispose();
 
-			initialize(month.getNextMonth(), db);
+			initialize(month.getNextMonth());
 		    }
 		});
 	    panel4.add(nextButton, BorderLayout.EAST);
@@ -139,7 +139,7 @@ public class MonthView extends JPanel {
 	days = new DayView[35];
 	for (int i = 0; i < 35; i++) {
 	    Calendar cal = new GregorianCalendar(month.getYear(), month.getMonthNum(), 2 + i - dayOfMonth);
-	    days[i] = new DayView(new Day(cal, db), false, false);
+	    days[i] = new DayView(new Day(cal), false, false);
 
 	    // this day is not in the month!
 	    if (month.getMonthNum() != cal.get(Calendar.MONTH)) {

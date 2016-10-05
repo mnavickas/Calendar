@@ -272,7 +272,6 @@ public class StartMenu extends JPanel
 	 */
 	public static void toMainProgram(String view, String month, String day, String username)
 	{
-		DBManager db = new DBManager(username);
 
 		int dayCount = Integer.parseInt(day);
 		int monthCount = Months.valueOf(month).ordinal();
@@ -281,19 +280,19 @@ public class StartMenu extends JPanel
 
 		if(view=="Yearly View")
 		{
-			YearView.initialize(db);
+			YearView.initialize();
 		}
 		if(view=="Monthly View")
 		{
-			MonthView.initialize(year,monthCount,db);
+			MonthView.initialize(year,monthCount);
 		}
 		if(view=="Weekly View")
 		{
-			WeekView.initialize(year, monthCount, dayCount, db);
+			WeekView.initialize(year, monthCount, dayCount);
 		}
 		if(view=="Daily View")
 		{
-			DayView.initialize(year, monthCount, dayCount, false, db);
+			DayView.initialize(year, monthCount, dayCount, false);
 		}
 
 	}
