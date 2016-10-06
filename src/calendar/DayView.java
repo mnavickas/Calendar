@@ -20,6 +20,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
+import Event.EventPlanner;
+
 /**
  * DayView
  *
@@ -91,8 +93,6 @@ public class DayView extends JPanel {
     public DayView(Day day, boolean needsText, boolean isPopup) {
 	super(new BorderLayout());
 
-	JPanel parent = this;
-
 	setBorder(BorderFactory.createLineBorder(Color.black));
 	setPreferredSize(new Dimension(400, 400));
 	setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -106,7 +106,7 @@ public class DayView extends JPanel {
 		public void mouseExited(MouseEvent e) {
 		}
 		public void mouseClicked(MouseEvent e) {
-		    initialize(day, true);
+		   EventPlanner.create(day.getDate());
 		}
 	    });
 
@@ -114,66 +114,6 @@ public class DayView extends JPanel {
 	JLabel label = new JLabel("" + day.getDayNumber());
 	add(label, BorderLayout.NORTH);
 
-	// editable agenda
-	if (needsText) {
-	    JTextArea agendaText = new JTextArea(day.getAgenda());
-	    agendaText.setLineWrap(true);
-	    agendaText.setWrapStyleWord(true);
-	    agendaText.setPreferredSize(new Dimension(200, 200));
-	    /*
-	    // progressive saving is disable because it slows down
-	    agendaText.getDocument().addDocumentListener(new DocumentListener() {
-		    public void changedUpdate(DocumentEvent documentEvent) {
-			// saveText(documentEvent);
-		    }
-		    public void insertUpdate(DocumentEvent documentEvent) {
-			// saveText(documentEvent);
-		    }
-		    public void removeUpdate(DocumentEvent documentEvent) {
-			// saveText(documentEvent);
-		    }
-		    private void saveText(DocumentEvent event) {
-			Document document = event.getDocument();
-			int length = document.getLength();
-			String text = "";
-			try {
-			    text = document.getText(0, length);
-			} catch (BadLocationException e) {
-			    text = "";
-			}
-			day.setAgenda(text);
-		    }
-		});
-	    */
-	    add(agendaText, BorderLayout.CENTER);
 
-	    // save button
-	    JButton button2;
-	    if (isPopup) {
-		button2 = new JButton("Save and close");
-	    } else {
-		button2 = new JButton("Save");
-	    }
-	    add(button2,BorderLayout.NORTH);
-	    button2.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent arg0) {
-			Document document = agendaText.getDocument();
-			int length = document.getLength();
-			String text = "";
-			try {
-			    text = document.getText(0, length);
-			} catch (BadLocationException e) {
-			    text = "";
-			}
-			day.setAgenda(text);
-
-			// close after save if popup
-			if (isPopup) {
-			    JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(parent);
-			    topFrame.dispose();
-			}
-		    }
-		});
-	}
     }
 }
