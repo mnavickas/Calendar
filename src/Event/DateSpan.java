@@ -12,6 +12,6 @@ public class DateSpan{
 	}
 	
 	public boolean intersects(DateSpan end){
-		 return this.first.before(end.second) && this.second.before(end.first);
+		 return this.first.before(end.second) && end.first.before(this.second);
 	}
 }
