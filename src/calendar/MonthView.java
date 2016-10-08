@@ -57,7 +57,7 @@ public class MonthView extends JPanel{
 	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
 	button.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent arg0)  {
-		    StartMenuFrame.initialize();
+		    StartMenu.initialize();
 		    frame.dispose();
 		}
 	    });

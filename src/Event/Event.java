@@ -50,7 +50,7 @@ public class Event {
 	/**
 	 * DataField variable
 	 */
-	public long rDays;
+	public int rDays;
 	
 	private static final Date lastDate;
 	
@@ -79,7 +79,7 @@ public class Event {
 		Description = (String)theEvent.get(Event.DESC_STRING);
 		unique_id = (long)theEvent.get(Event.ID_STRING);
 		rType = RepeatType.valueOf((String)theEvent.get(Event.REPEAT_STRING));
-		rDays = (long)theEvent.get(Event.REPEAT_DAYS_STRING);
+		rDays = (int)theEvent.get(Event.REPEAT_DAYS_STRING);
 	}
 	
 	/**

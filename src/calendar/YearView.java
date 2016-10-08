@@ -60,7 +60,7 @@ public class YearView extends JPanel
 
                       public void actionPerformed(ActionEvent arg0)
                       {
-                        StartMenuFrame.initialize();
+                        StartMenu.initialize();
                         frame.dispose();
                       }
                 });
