@@ -41,11 +41,9 @@ public class YearView extends JPanel
          * Creates an instance of the YearView within a JFrame
          * @param db The database to load from
         */
-        public static void initialize()
+        public static void initialize(int y, int m, int d)
         {
                 JFrame frame = new JFrame("Year View");
-
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 
                 // returns to the main start menu
@@ -62,7 +60,7 @@ public class YearView extends JPanel
 
                       public void actionPerformed(ActionEvent arg0)
                       {
-                        StartMenu.initialize();
+                        StartMenuFrame.initialize();
                         frame.dispose();
                       }
                 });

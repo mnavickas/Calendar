@@ -11,7 +11,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import enums.Months;
@@ -35,19 +34,19 @@ public class StartMenu extends JPanel
 	/**
 	 * static variables to be used in the generation of the menu
 	 */
-	public static JComboBox<String> viewType;
-	public static JComboBox<String> selectMonth;
-	public static JComboBox<String> selectDay;
-	public static JComboBox<String> selectDay2;
-	public static JComboBox<String> selectDay3;
-	public static JComboBox<String> selectDay4;
+	private  JComboBox<String> viewType;
+	private  JComboBox<String> selectMonth;
+	private  JComboBox<String> selectDay;
+	private  JComboBox<String> selectDay2;
+	private  JComboBox<String> selectDay3;
+
 
 
 	/**
 	 * member variables for the start menu to use
 	 */
 	private String monthChoice="";
-	private String dayChoice="";
+	private int dayChoice;
 	private String viewChoice="";
 
 
@@ -58,12 +57,11 @@ public class StartMenu extends JPanel
 	 */
 
 	private static String [] mwd = {"Yearly View","Monthly View","Weekly View","Daily View"};
-	private static String [] months = {"August","September","October","November","December","January","Febuary","March","April","May"};
+	private static String [] months = {"August","September","October","November","December","January","February","March","April","May"};
 
 	private static String [] days = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
 	private static String [] days2 = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"};
 	private static String [] days3 = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28"};
-	private StartMenu mainWindowInstance;
 
 
 
@@ -71,7 +69,6 @@ public class StartMenu extends JPanel
 	public static JFrame menu;
 	public static void main(String[] args)
 	{
-
 		initialize();
 	}
 
@@ -85,13 +82,7 @@ public class StartMenu extends JPanel
 			public void run()
 			{
 				menu = new StartMenuFrame("Calendar");
-				menu.setSize(850,700);
 
-				menu.setResizable(true); //http://stackoverflow.com/questions/18031704/jframe-how-to-disable-window-resizing
-
-				menu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
-
-				menu.setVisible(true);
 			}
 		});
 	}
@@ -119,7 +110,7 @@ public class StartMenu extends JPanel
 	public StartMenu()
 	{
 
-		//
+		monthChoice = "August";
 		Dimension size = getPreferredSize();
 		size.width = 500;
 		setPreferredSize(size);
@@ -183,10 +174,10 @@ public class StartMenu extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				monthChoice= (String) selectMonth.getSelectedItem();
-				dayChoice= (String) selectDay.getSelectedItem();
+				dayChoice=  selectDay.getSelectedIndex()+1;
 
 
-				if(monthChoice == "August" || monthChoice=="October" || monthChoice== "December" || monthChoice=="January" || monthChoice=="March" || monthChoice=="May")
+				if(monthChoice.equals("August") || monthChoice.equals("October")|| monthChoice.equals("December") || monthChoice.equals("January") || monthChoice.equals("March") || monthChoice.equals("May"))
 				{
 					selectDay.setVisible(true);
 					selectDay2.setVisible(false);
@@ -194,7 +185,7 @@ public class StartMenu extends JPanel
 				}
 
 
-				else if(monthChoice == "September" || monthChoice== "November" || monthChoice== "April")
+				else if(monthChoice.equals("September") || monthChoice.equals("November") || monthChoice.equals( "April"))
 				{
 					selectDay.setVisible(false);
 					selectDay2.setVisible(true);
@@ -202,7 +193,7 @@ public class StartMenu extends JPanel
 				}
 
 
-				else if(monthChoice=="Febuary")
+				else if(monthChoice.equals("February"))
 				{
 					selectDay.setVisible(false);
 					selectDay2.setVisible(false);
@@ -211,26 +202,7 @@ public class StartMenu extends JPanel
 			}
 		};
 		selectMonth.addActionListener(cbActionListener);
-
-
-		// user input label
-		JLabel userLabel = new JLabel("User name to use (16 char limit): ");
-		gc.anchor = GridBagConstraints.LINE_END;
-		gc.gridx = 0;
-		gc.gridy = 2;
-		add(userLabel,gc);
-
-		// user input field
-		JTextField userField = new JTextField("testuser", 20);
-
-		// from http://stackoverflow.com/questions/4527604/jtextfield-only-shows-as-a-slit-using-gridbaglayout-need-help
-		userField.setMinimumSize(userField.getPreferredSize());
-
-		gc.anchor = GridBagConstraints.LINE_START;
-		gc.gridx = 1;
-		gc.gridy = 2;
-		add(userField,gc);
-
+		
 
 		final JButton button = new JButton("Submit");
 		gc.anchor = GridBagConstraints.LINE_START;
@@ -243,19 +215,21 @@ public class StartMenu extends JPanel
 
 			public void actionPerformed(ActionEvent arg0)
 			{
-
-				dayChoice= (String) selectDay.getSelectedItem();
+				if(monthChoice.equals( "August") || monthChoice.equals("October")|| monthChoice.equals("December") || monthChoice.equals("January") || monthChoice.equals("March") || monthChoice.equals("May"))
+				{
+					dayChoice = 	selectDay.getSelectedIndex()+1;
+				}
+				else if(monthChoice.equals("September") || monthChoice.equals("November") || monthChoice.equals( "April"))
+				{
+					dayChoice = 	selectDay2.getSelectedIndex()+1;
+				}
+				else if(monthChoice.equals("Febuary"))
+				{
+					dayChoice = 	selectDay3.getSelectedIndex()+1;
+				}
 				monthChoice= (String) selectMonth.getSelectedItem();
 				viewChoice= (String) viewType.getSelectedItem();
-
-				String userText = userField.getText();
-				if (userText.length() > 16) {
-					userText = userText.substring(0, 16);
-				}
-
-				mainWindowInstance = new StartMenu();
-				disposeframe();
-				toMainProgram(viewChoice,monthChoice,dayChoice,userText);
+				toMainProgram(viewChoice,monthChoice,dayChoice);
 			}
 		});
 
@@ -270,38 +244,41 @@ public class StartMenu extends JPanel
 	 * @param view is a string that determines which viewtype class will initialize
 	 * @param username The username to use for the database.
 	 */
-	public static void toMainProgram(String view, String month, String day, String username)
+
+	public static View viewTypeEnum;
+	public static int YearHold, monthHold, dayHold;
+	public static void toMainProgram(String view, String month, int day)
 	{
 
-		int dayCount = Integer.parseInt(day);
+		int dayCount = day;
 		int monthCount = Months.valueOf(month).ordinal();
 		int year = (monthCount<7) ? 2017 : 2016;
 
+		YearHold = year;
+		monthHold = monthCount;
+		dayHold = day;
 
 		if(view=="Yearly View")
 		{
-			YearView.initialize();
+			YearView.initialize(year,monthCount,dayCount);
+			viewTypeEnum = View.Year;
 		}
 		if(view=="Monthly View")
 		{
-			MonthView.initialize(year,monthCount);
+			MonthView.initialize(year,monthCount,dayCount);
+			viewTypeEnum = View.Month;
 		}
 		if(view=="Weekly View")
 		{
 			WeekView.initialize(year, monthCount, dayCount);
+			viewTypeEnum = View.Week;
 		}
 		if(view=="Daily View")
 		{
-			DayView.initialize(year, monthCount, dayCount, false);
+			DayViewPopup.initialize(year,monthCount, dayCount);
+			viewTypeEnum = View.Day;
 		}
-
-	}
-
-	public void disposeframe()
-	{
-		// Disposing menu frame
-		//http://stackoverflow.com/questions/7122349/disposing-jframe-from-another-class
-		mainWindowInstance.getMainFrame().dispose();
+		menu.dispose();
 	}
 
 

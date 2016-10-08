@@ -1,5 +1,6 @@
 package Event;
 
+import static calendar.Debug.isDebug;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
@@ -111,6 +112,7 @@ public class Event {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		if(isDebug())
 		System.out.println("Time Intervals for "+this.Name+": "+timeIntervals.size());
 	}
 	
@@ -184,7 +186,7 @@ public class Event {
 	{
 		Date startDate = DateFormatter.getAdvFormat().parse(StartDate +" "+StartTime);
 		Date stopDate = DateFormatter.getAdvFormat().parse(StopDate +" "+StopTime);
-		
+
 		GregorianCalendar cStart = new GregorianCalendar();
 		cStart.setTime(startDate);
 		cStart.set(Calendar.DAY_OF_WEEK, 0);
@@ -202,7 +204,9 @@ public class Event {
 					
 					cStart.set(Calendar.DAY_OF_WEEK, i+1);
 					cStop.set(Calendar.DAY_OF_WEEK, i+1);
-					timeIntervals.add( new DateSpan(cStart.getTime(),cStop.getTime()));
+					DateSpan d = new DateSpan(cStart.getTime(),cStop.getTime());
+					timeIntervals.add(d);
+
 					
 				}
 			}

@@ -18,7 +18,7 @@ import javax.swing.SwingUtilities;
 /**
  * Month view shows an interface for a month.
  */
-public class MonthView extends JPanel {
+public class MonthView extends JPanel{
     /**
 	 * 
 	 */
@@ -57,7 +57,7 @@ public class MonthView extends JPanel {
 	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
 	button.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent arg0)  {
-		    StartMenu.initialize();
+		    StartMenuFrame.initialize();
 		    frame.dispose();
 		}
 	    });
@@ -70,7 +70,7 @@ public class MonthView extends JPanel {
      *              September.
      * @param db The database to use.
      */
-    public static void initialize(int year, int month) {
+    public static void initialize(int year, int month,int d) {
 	initialize(new Month(year, month));
     }
 
@@ -139,7 +139,7 @@ public class MonthView extends JPanel {
 	days = new DayView[35];
 	for (int i = 0; i < 35; i++) {
 	    Calendar cal = new GregorianCalendar(month.getYear(), month.getMonthNum(), 2 + i - dayOfMonth);
-	    days[i] = new DayView(new Day(cal), false, false);
+	    days[i] = new DayView(new Day(cal), false);
 
 	    // this day is not in the month!
 	    if (month.getMonthNum() != cal.get(Calendar.MONTH)) {

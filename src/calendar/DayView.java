@@ -4,21 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.GregorianCalendar;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
 
 import Event.EventPlanner;
 
@@ -42,34 +35,20 @@ public class DayView extends JPanel {
      * @param isPopup Whether to open in "popup" mode,
      *                that is whether to have a back menu shown.
      */
-    public static void initialize(Day day, boolean isPopup) {
+    public static void initialize(Day day) {
 	JFrame frame = new JFrame(day.toString());
 
-	if (isPopup) {
-	    frame.setLocationRelativeTo(null);
-	    frame.setAlwaysOnTop(true);
-	}
-
 	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
-	DayView view = new DayView(day, true, isPopup);
+	DayView view = new DayView(day, true);
 	frame.add(view, BorderLayout.CENTER);
 	frame.pack();
 	frame.setVisible(true);
 
-	if (!isPopup) {
-	    JButton button1 = new JButton("Back to main menu");
-	    frame.add(button1,BorderLayout.NORTH);
-	    button1.addActionListener(new ActionListener() {
-		    public void actionPerformed(ActionEvent arg0) {
-			StartMenu.initialize();
-			frame.dispose();
-		    }
-		});
-	}
+
     }
 
     /**
-     * Same as above but with different parrameters.
+     * Same as above but with different parameters.
      *
      * @param year The year to be shown for example 2016.
      * @param month The month to be shown for example 10 for September.
@@ -77,8 +56,8 @@ public class DayView extends JPanel {
      * @param isPopup Whether to use popup mode in this day view.
      * @param db The database to use.
      */
-    public static void initialize(int year, int month, int day, boolean isPopup) {
-	initialize(new Day(new GregorianCalendar(year, month, day)), isPopup);
+    public static void initialize(int year, int month, int day) {
+	initialize(new Day(new GregorianCalendar(year, month, day)));
     }
 
     /**
@@ -90,7 +69,7 @@ public class DayView extends JPanel {
      *                That the window will close when the "save" button
      *                is pressed.
      */ 
-    public DayView(Day day, boolean needsText, boolean isPopup) {
+    public DayView(Day day, boolean needsText) {
 	super(new BorderLayout());
 
 	setBorder(BorderFactory.createLineBorder(Color.black));

@@ -1,4 +1,5 @@
 package Event;
+import static calendar.Debug.isDebug;
 
 import java.io.FileNotFoundException;
 import java.text.ParseException;
@@ -103,7 +104,11 @@ public class EventCache {
 		Date stop = DateFormatter.getAdvFormat().parse(dateString+ " 23:59");
 		
 		DateSpan span = new DateSpan(start,stop);
-		
+		if(isDebug()){
+			System.out.println("Day we are checking for conflict: "+span.toString());
+			System.out.println("total size: "+eventsList.size());
+		}
+
 		for(int idx = 0; idx<eventsList.size(); idx++)
 		{
 			Event theEvent = eventsList.get(idx);
@@ -115,11 +120,20 @@ public class EventCache {
 		}
 		return todaysEvents;
 	}
-	
+	/**
+	 * Check if the DateSpan intersects any of the Event's DateSpans
+	 * @param span DateSpan to check
+	 * @param e Event to check against
+	 * @return true if there exists an intersection
+	 */
 	private boolean hasIntersection(DateSpan span, Event e){
 
 		for(int i = 0; i< e.getTimeIntervalList().size(); i++)
 		{
+			if(isDebug()){
+				System.out.println(e.Name+" time interval: "+e.getTimeIntervalList().get(i).toString());
+			}
+			
 			if(span.intersects(e.getTimeIntervalList().get(i)))
 			{
 				return true;

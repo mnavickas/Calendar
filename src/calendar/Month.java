@@ -3,6 +3,8 @@ package calendar;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import enums.Months;
+
 /**
  * Data type for a month.
  */
@@ -33,7 +35,7 @@ public class Month {
      * @return string rep of week
      */
     public String toString() {
-	return monthNames[cal.get(Calendar.MONTH)];
+	return Months.values()[cal.get(Calendar.MONTH)].toString();
     }
 
     /**

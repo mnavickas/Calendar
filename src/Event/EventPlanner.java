@@ -17,6 +17,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,6 +25,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import calendar.DayViewPopup;
+import calendar.StartMenu;
+import calendar.View;
 import enums.Months;
 
 public class EventPlanner extends JFrame {
@@ -132,7 +136,17 @@ public class EventPlanner extends JFrame {
 
 	public static void create(Date dateOn)
 	{
-
+		if(mInstance == null ){
+			mInstance = new EventPlanner(dateOn);
+		}
+		else{
+			mInstance.toFront();
+		}
+	}
+	private static JFrame sframe = null;
+	public static void create(Date dateOn, JFrame frame)
+	{
+		sframe = frame;
 		if(mInstance == null ){
 			mInstance = new EventPlanner(dateOn);
 		}
@@ -475,6 +489,13 @@ public class EventPlanner extends JFrame {
 		EventCache.getInstance().addEvent(event);
 		JOptionPane.showMessageDialog(this, "Event Saved!","Event Planner",JOptionPane.INFORMATION_MESSAGE);
 		dispose();
+		if(StartMenu.viewTypeEnum == View.Day){
+			if(sframe != null )
+			{
+				sframe.dispose();
+			}
+			DayViewPopup.initialize(StartMenu.YearHold, StartMenu.monthHold, StartMenu.dayHold);
+		}
 		
 	}
 

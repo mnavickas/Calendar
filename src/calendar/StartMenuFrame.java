@@ -29,15 +29,14 @@ public class StartMenuFrame extends JFrame
         public StartMenuFrame(String title)
         {
         	super(title);
-
-        	setLayout(new BorderLayout());
         	menuDetails = new StartMenu();
-
-        	//JButton button = new JButton("Submit");
-        	Container c = getContentPane();
-
-        	//c.add(button,BorderLayout.SOUTH);
-        	c.add(menuDetails,BorderLayout.CENTER);
+    
+        	setLayout(new BorderLayout());
+        	setSize(850,700);
+        	setResizable(true); //http://stackoverflow.com/questions/18031704/jframe-how-to-disable-window-resizing
+			setVisible(true);
+        	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        	add(menuDetails,BorderLayout.CENTER);
 
         }
 
