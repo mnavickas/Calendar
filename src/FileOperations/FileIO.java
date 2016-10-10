@@ -40,7 +40,7 @@ public final class FileIO {
 	 * Read JSONArray from File
 	 * @param filepath filepath to read from
 	 * @return JSONArray filled with events from file
-	 * @throws FileNotFoundException
+	 * @throws FileNotFoundException For irregularly formatted file.
 	 */
 	public static synchronized JSONArray readToArray(String filepath) throws FileNotFoundException{
 		File file = new File(filepath);

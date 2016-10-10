@@ -5,14 +5,12 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
-import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import Event.Event;
 import Event.EventPlanner;
 
 public class DayViewLeftPanel extends JPanel {
@@ -27,7 +25,6 @@ public class DayViewLeftPanel extends JPanel {
 	public DayViewLeftPanel(
 							Date date,
 							String dateString, 
-							LinkedList<Event> allDayEventsList,
 							JFrame old
 							)
 	{
@@ -46,16 +43,9 @@ public class DayViewLeftPanel extends JPanel {
 		dateLabel.setBounds(65,35,200,30);
 		
 
-		
-
 		add(allDayEvents);
 		add(dateLabel);
-		for(int i = 0; i< allDayEventsList.size(); i++){
-		
-			
-		}
-		
-		
+
 		JButton b = new JButton("New Event");
 		b.setBounds(0,560,(int)getPreferredSize().getWidth(),40);
 		b.addActionListener(new ActionListener(){

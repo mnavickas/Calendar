@@ -7,12 +7,26 @@ public class DateFormatter {
 	
 	private static SimpleDateFormat dateFormatter = new SimpleDateFormat("MM-dd-yyyy");;
 	private static SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("MM-dd-yyyy hh:mm");
+	/**
+	 * 
+	 * @return date Format
+	 */
 	public static SimpleDateFormat getFormat(){
 		return dateFormatter;
 	}
+	/**
+	 * 
+	 * @return dateTime Format
+	 */
 	public static SimpleDateFormat getAdvFormat(){
 		return dateTimeFormatter;
 	}
+	/**
+	 * 
+	 * @param type Type of format
+	 * @param date Date to format
+	 * @return date as string.
+	 */
 	public static String format(FormatTypes type, Date date){
 		switch(type)
 		{

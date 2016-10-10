@@ -50,6 +50,7 @@ public class EventCache {
 	/**
 	 * Convert JSONArray to LinkedList
 	 * @param array JSONArray of events
+	 * @return array as LinkedList
 	 */
 	private LinkedList<Event> arrayToList(JSONArray array){
 		LinkedList<Event> eventList = new LinkedList<Event>();
@@ -93,7 +94,7 @@ public class EventCache {
 	 * 
 	 * @param dateString to get dates for
 	 * @return List of events intersecting that date.
-	 * @throws ParseException 
+	 * @throws ParseException throw on irregularly formatted string
 	 */
 	public LinkedList<Event> getEventsForDate(String dateString) throws ParseException{
 		//TODO verify this

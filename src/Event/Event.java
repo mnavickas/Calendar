@@ -29,6 +29,10 @@ public class Event {
 	
 	private LinkedList<DateSpan> timeIntervals;
 	
+	/**
+	 * 
+	 * @return List of all datespans for this event.
+	 */
 	@SuppressWarnings("unchecked")
 	public LinkedList<DateSpan> getTimeIntervalList()
 	{
@@ -50,7 +54,7 @@ public class Event {
 	/**
 	 * DataField variable
 	 */
-	public int rDays;
+	public long rDays;
 	
 	private static final Date lastDate;
 	
@@ -67,7 +71,7 @@ public class Event {
 	
 	/**
 	 * 'Copy' constructor
-	 * @param JSONObject we are converting.
+	 * @param theEvent JSONObject we are converting.
 	 */
 	public Event(JSONObject theEvent)
 	{
@@ -79,7 +83,7 @@ public class Event {
 		Description = (String)theEvent.get(Event.DESC_STRING);
 		unique_id = (long)theEvent.get(Event.ID_STRING);
 		rType = RepeatType.valueOf((String)theEvent.get(Event.REPEAT_STRING));
-		rDays = (int)theEvent.get(Event.REPEAT_DAYS_STRING);
+		rDays = (long)theEvent.get(Event.REPEAT_DAYS_STRING);
 	}
 	
 	/**
@@ -144,8 +148,8 @@ public class Event {
 	}
 	/**
 	 * No repeat events
-	 * @param timeIntervals
-	 * @throws ParseException
+	 * @param timeIntervals list of time intervals
+	 * @throws ParseException throw on irregularly formated strings.
 	 */
 	private void handleNone(LinkedList<DateSpan> timeIntervals) throws ParseException
 	{
@@ -155,8 +159,8 @@ public class Event {
 	}
 	/**
 	 * Add 7 days
-	 * @param timeIntervals
-	 * @throws ParseException
+	 * @param timeIntervals list of time intervals
+	 * @throws ParseException throw on irregularly formated strings.
 	 */
 	private void handleWeekly(LinkedList<DateSpan> timeIntervals) throws ParseException
 	{
@@ -179,8 +183,8 @@ public class Event {
 	}
 	/**
 	 * Check against bitset for enabled bits
-	 * @param timeIntervals
-	 * @throws ParseException
+	 * @param timeIntervals list of time intervals
+	 * @throws ParseException throw on irregularly formated strings.
 	 */
 	private void handleDayOfWeek(LinkedList<DateSpan> timeIntervals) throws ParseException
 	{
@@ -220,8 +224,8 @@ public class Event {
 	
 	/**
 	 * MUST BE LESS THAN THE 28th OF THE MONTH
-	 * @param timeIntervals
-	 * @throws ParseException
+	 * @param timeIntervals list of time intervals
+	 * @throws ParseException throw on irregularly formated strings.
 	 */
 	private void handleMonthly(LinkedList<DateSpan> timeIntervals) throws ParseException
 	{
@@ -249,8 +253,8 @@ public class Event {
 	
 	/**
 	 * Add 14 days
-	 * @param timeIntervals
-	 * @throws ParseException
+	 * @param timeIntervals list of time intervals
+	 * @throws ParseException throw on irregularly formated strings.
 	 */
 	private void handleBiWeekly(LinkedList<DateSpan> timeIntervals) throws ParseException
 	{

@@ -13,7 +13,6 @@ public class Week {
     /**
      * Construct a week from its first day.
      * @param cal the Calendar date to use.
-     * @param db Database to lookup from.
      */ 
     public Week(Calendar cal) {
 	this.cal = (Calendar) cal.clone();

@@ -37,10 +37,12 @@ public class YearView extends JPanel
         String[] days;
 
 
-        /**
-         * Creates an instance of the YearView within a JFrame
-         * @param db The database to load from
-        */
+		/**
+		 * Create yearview within a frame
+		 * @param y year
+		 * @param m month
+		 * @param d day
+		 */
         public static void initialize(int y, int m, int d)
         {
                 JFrame frame = new JFrame("Year View");
@@ -69,7 +71,6 @@ public class YearView extends JPanel
 
         /**
          * Yearview constructor
-         * @param db The database to load days from.
         */
         public YearView()
         {
@@ -100,7 +101,7 @@ public class YearView extends JPanel
 
 
 
-                // interates through array of MonthView instances that will be placed within the JFrame
+                // iterates through array of MonthView instances that will be placed within the JFrame
                 for(int A = 0 ; A < 10 ; A++)
                 {
                         // for titling the months correctly

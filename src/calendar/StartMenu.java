@@ -99,13 +99,6 @@ public class StartMenu extends JPanel
 
 	/**
 	 * StartMenu constructor,  sets GridBagLayout
-	 * @param size sets the size of the JFrame
-	 * @param viewtype is a JComboBox that contains different viewtypes
-	 * @param selectMonth is a JComboBox that contains different months
-	 * @param selectDay is a JComboBox that contains different days
-	 * @param selectDay2 is a JComboBox that holds an array of strings 1-30
-	 * @param selectDay2 is a JComboBox that holds an array of strings 1-28
-	 * @param cbActionListener is a JComboBox action listener that displays the correct days of the month when the user selects a month
 	 */
 	public StartMenu()
 	{
@@ -236,17 +229,16 @@ public class StartMenu extends JPanel
 	}
 
 
-	/**
-	 * ToMainProgram takes the JcomboBox values as strings, converts the inputs into ints and returns the values to the respective viewtype class
-	 * @param mc represents months in an integer form; beginning at 0 for January to 11 for December
-	 * @param dc converts the string of days to the appropriate integer form.
-	 * @param year sets the value of the year depending on the month of the shcool year.
-	 * @param view is a string that determines which viewtype class will initialize
-	 * @param username The username to use for the database.
-	 */
+
 
 	public static View viewTypeEnum;
 	public static int YearHold, monthHold, dayHold;
+	/**
+	 * ToMainProgram takes the JcomboBox values as strings, converts the inputs into ints and returns the values to the respective viewtype class
+	 * @param month represents months in an String form
+	 * @param day day represented as int
+	 * @param view is a string that determines which viewtype class will initialize
+	 */
 	public static void toMainProgram(String view, String month, int day)
 	{
 
@@ -265,7 +257,7 @@ public class StartMenu extends JPanel
 		}
 		if(view=="Monthly View")
 		{
-			MonthView.initialize(year,monthCount,dayCount);
+			MonthView.initialize(year,monthCount);
 			viewTypeEnum = View.Month;
 		}
 		if(view=="Weekly View")

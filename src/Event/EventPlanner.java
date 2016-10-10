@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
@@ -17,7 +18,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -134,6 +134,10 @@ public class EventPlanner extends JFrame {
 
 	private static  EventPlanner mInstance;
 
+	/**
+	 * Create an eventPlanner
+	 * @param dateOn the date we are planning an event for
+	 */
 	public static void create(Date dateOn)
 	{
 		if(mInstance == null ){
@@ -144,6 +148,11 @@ public class EventPlanner extends JFrame {
 		}
 	}
 	private static JFrame sframe = null;
+	/**
+	 * Create an eventPlanner
+	 * @param dateOn the date we are planning an event for
+	 * @param frame parent JFrame
+	 */
 	public static void create(Date dateOn, JFrame frame)
 	{
 		sframe = frame;
@@ -154,7 +163,10 @@ public class EventPlanner extends JFrame {
 			mInstance.toFront();
 		}
 	}
-
+	/**
+	 * Create an event planner
+	 * @param dateOn the date we are planning an event for
+	 */
 	private EventPlanner(Date dateOn)
 	{
 
@@ -437,7 +449,6 @@ public class EventPlanner extends JFrame {
 
 	/**
 	 * Save the event to JSON and exit this frame
-	 * @throws IrregularFormatException
 	 */
 	private void saveAndExit()
 	{
@@ -456,6 +467,22 @@ public class EventPlanner extends JFrame {
 		event.StartTime = startTime.getSelectedItem().toString();
 		event.StopTime = endTime.getSelectedItem().toString();
 
+		try {
+			Date startDate = DateFormatter.getAdvFormat().parse(event.StartDate +" "+event.StartTime);
+			Date stopDate = DateFormatter.getAdvFormat().parse(event.StopDate +" "+event.StopTime);
+			
+			if(startDate.after(stopDate) || startDate.equals(stopDate))
+			{
+				Toolkit.getDefaultToolkit().beep();
+				JOptionPane.showMessageDialog(this, "Event times don't align","Error",JOptionPane.WARNING_MESSAGE);
+				return;
+			}
+			
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+		
 		if(DoW.isSelected())
 		{
 			event.rType = RepeatType.DAY_OF_WEEK;
@@ -600,7 +627,7 @@ public class EventPlanner extends JFrame {
 				Toolkit.getDefaultToolkit().beep();
 				JOptionPane.showMessageDialog(null, "Please name your event.","Error",JOptionPane.WARNING_MESSAGE);
 			}
-			else if(startTime.getSelectedIndex()>endTime.getSelectedIndex())//TODO account for multiday
+			else if(startTime.getSelectedIndex()>endTime.getSelectedIndex())
 			{
 				Toolkit.getDefaultToolkit().beep();
 				JOptionPane.showMessageDialog(null, "Your event has negative time :( ","Time Machine?",JOptionPane.WARNING_MESSAGE);

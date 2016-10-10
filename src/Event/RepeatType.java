@@ -27,4 +27,25 @@ public enum RepeatType {
 	 * No repeat
 	 */
 	NONE;
+	/**
+	 * @return this as a user friendly string
+	 */
+	public String toString(){
+		switch(this)
+		{
+		case BIWEEKLY:
+			return "Biweekly";
+		case DAY_OF_WEEK:
+			return "Day Of Week";
+		case MONTHLY:
+			return "Monthy";
+		case NONE:
+			return "No Repeat";
+		case WEEKLY:
+			return "Weekly";
+		
+		}
+		return "";
+		
+	}
 }

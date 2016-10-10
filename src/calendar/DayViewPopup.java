@@ -12,7 +12,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.swing.Box;
@@ -34,15 +33,20 @@ public class DayViewPopup extends JFrame{
 
     public static final int FRAME_WIDTH 		= 700;
     public static final int FRAME_HEIGHT 		= 700;
-private static final long serialVersionUID = -3078193866264175025L;
+    private static final long serialVersionUID = -3078193866264175025L;
 	
-	private JPanel leftBar;
 	private String dateString;
 	private Date date;
 	private JScrollPane rightScrollPane;
 	private LinkedList<Event> todaysEvents;
-	private LinkedList<Event> allDayEvents;
+	private EventPicker eventPicker;
 	
+	/**
+	 * Create the frame.
+	 * @param y year
+	 * @param m month
+	 * @param d day
+	 */
 	public static void initialize(int y, int m, int d){
 		try {
 			new DayViewPopup(y,m,d);
@@ -52,19 +56,28 @@ private static final long serialVersionUID = -3078193866264175025L;
 	}
 
 
+	/**
+	 * Build the frame
+	 * @param y Year
+	 * @param m Month
+	 * @param d Day
+	 * @throws ParseException For irregularly formatted values.
+	 */
 	private DayViewPopup(int y, int m, int d) throws ParseException{
 		todaysEvents = new LinkedList<Event>();
 		date = setDate(y,m,d);
+		eventPicker = new EventPicker(this);
 
 		dateString = DateFormatter.format(FormatTypes.Date, date);
 
 		todaysEvents = EventCache.getInstance().getEventsForDate(dateString);
-
-		allDayEvents = new LinkedList<Event>();
-		//allDayEvents = removeAllDayEvents(todaysEvents);
 		sort(todaysEvents);
 		
-		initThisPanel();
+		setLayout( new BorderLayout() );
+		setPreferredSize(new Dimension(FRAME_WIDTH,FRAME_HEIGHT+50));
+		setMinimumSize(new Dimension(FRAME_WIDTH,FRAME_HEIGHT+50));
+		setMaximumSize(new Dimension(FRAME_WIDTH,FRAME_HEIGHT+50));
+		setBackground(Color.GRAY);
 		
 		
 		JButton button = new JButton("Back to main menu");
@@ -80,7 +93,8 @@ private static final long serialVersionUID = -3078193866264175025L;
 		
 		Component spacer = Box.createRigidArea(new Dimension(FRAME_WIDTH,50));
 		
-		addLeftBar();
+		JPanel leftBar = new DayViewLeftPanel(date,dateString,this);
+		add(leftBar, BorderLayout.LINE_START);
 		
 		addRightScrollBar();
 		
@@ -92,22 +106,22 @@ private static final long serialVersionUID = -3078193866264175025L;
 
 		
 	}
+	/**
+	 * 
+	 * @param y year
+	 * @param m month
+	 * @param d day
+	 * @return the date shown by these values
+	 */
 	private Date setDate(int y, int m, int d){
 		Calendar firstDay = new GregorianCalendar(y, m, d);	
 		return firstDay.getTime();
 		
 	}
-	private void initThisPanel(){
-		setLayout( new BorderLayout() );
-		setPreferredSize(new Dimension(FRAME_WIDTH,FRAME_HEIGHT+50));
-		setMinimumSize(new Dimension(FRAME_WIDTH,FRAME_HEIGHT+50));
-		setMaximumSize(new Dimension(FRAME_WIDTH,FRAME_HEIGHT+50));
-		setBackground(Color.GRAY);
-	}
-	private void addLeftBar(){
-		leftBar = new DayViewLeftPanel(date,dateString,allDayEvents,this);
-		add(leftBar, BorderLayout.LINE_START);
-	}
+	
+	/**
+	 * Right bar containing the events.
+	 */
 	private void addRightScrollBar(){
 		rightScrollPane = new JScrollPane();
 		rightScrollPane.setPreferredSize(new Dimension((int)((2.0/3.0)*FRAME_WIDTH),(int)(FRAME_HEIGHT)));
@@ -122,14 +136,14 @@ private static final long serialVersionUID = -3078193866264175025L;
 		
 
 		//rightScrollPane.add(new JLabel(todaysEvents.get(0).Name));
-		rightScrollPane.setViewportView(new DayViewGrid(rightScrollPane,date,todaysEvents));
+		rightScrollPane.setViewportView(new DayViewGrid(rightScrollPane,date,todaysEvents,eventPicker));
 		
 		add(rightScrollPane, BorderLayout.LINE_END);
 		
 	}
 	/**
 	 * remove all day events before this point
-	 * @param linkedList
+	 * @param lle linked list to sort
 	 */
 	public void sort(LinkedList<Event> lle){
 		Collections.sort(lle, new Comparator<Event>() {
@@ -139,6 +153,12 @@ private static final long serialVersionUID = -3078193866264175025L;
 	         }
 	     });
 	}
+	
+	/**
+	 * 
+	 * @param timeString to convert to minutes
+	 * @return time in minutes as represented by the string
+	 */
 	public int getTimeStringAsMinutes(String timeString){
 		int timeInMinutes=0;
 		
@@ -160,20 +180,5 @@ private static final long serialVersionUID = -3078193866264175025L;
 		return timeInMinutes;
 		
 	}
-	public LinkedList<Event> removeAllDayEvents(LinkedList<Event> lle){
-		
-		Iterator<Event> it  = lle.iterator();
-		LinkedList<Event> allDayEvents = new LinkedList<Event>();
-		
-		//fix this.
-		while(it.hasNext()){
-			Event e = it.next();
-			if(e.StartTime.equals("-1") || e.StopTime.equals("-1")){
-				it.remove();
-				allDayEvents.add(e);
-			}
-			
-		}
-		return allDayEvents;
-	}
+
 }

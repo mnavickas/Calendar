@@ -11,8 +11,7 @@ import enums.Months;
 public class Month {
     private Calendar cal;
 
-    private static String[] monthNames = { "January", "Feburary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
-
+   
     /**
      * Construct a week from its first day.
      * @param year the year number

@@ -11,19 +11,26 @@ import javax.swing.border.Border;
 
 import Event.DateFormatter;
 import Event.Event;
-
-public class DayViewEvent extends JPanel{
+/**
+ * 
+ * Tile showing the event.
+ *
+ */
+public class DayViewEvent extends JPanel implements IDayEvent{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2318788304336791454L;
-	private int day;
-	private int month;
-	private int year;
-
+	
+	private Event theEvent;
+	/**
+	 * Create the tile
+	 * @param e Event to display
+	 */
 	public DayViewEvent(Event e){
 		this.setLayout(null);
+		theEvent = e;
 
 		//this.setBackground(Color.BLACK);
 		Border doubleBorder = BorderFactory.createCompoundBorder(
@@ -42,9 +49,6 @@ public class DayViewEvent extends JPanel{
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 		}
-		day = cal.get(Calendar.DAY_OF_MONTH);
-		month = cal.get(Calendar.MONTH);
-		year = cal.get(Calendar.YEAR);
 		
 		JLabel name = new JLabel(e.Name);
 		name.setForeground(Color.BLACK);
@@ -61,21 +65,12 @@ public class DayViewEvent extends JPanel{
 
 	}
 
-
-	public int getDay() {
-		// TODO Auto-generated method stub
-		return day;
-	}
-
-
-	public int getMonth() {
-		// TODO Auto-generated method stub
-		return month;
-	}
-
-	public int getYear() {
-		// TODO Auto-generated method stub
-		return year;
+	/**
+	 * @return this Event
+	 */
+	@Override
+	public Event getEvent() {
+		return theEvent;
 	}
 	
 

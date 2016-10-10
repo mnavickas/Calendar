@@ -18,7 +18,6 @@ public class Day {
      * Instantiate a Day.
      * @param cal The java.util.Calendar object to use for that day.
      *            Seconds and hours are ignored.
-     * @param db  The db to use to store day information.
      */
     public Day(Calendar cal)
     {
