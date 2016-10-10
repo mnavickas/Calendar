@@ -65,7 +65,7 @@ public class WeekView extends JPanel {
 
 	frame.pack();
 	frame.setVisible(true);
-	frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
+	frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); //http://stackoverflow.com/questions/258099/how-to-close-a-java-swing-application-from-the-code
     }
 
     /**

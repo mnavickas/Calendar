@@ -55,6 +55,7 @@ public class YearView extends JPanel
                 frame.add(view, BorderLayout.CENTER);
                 frame.pack();
                 frame.setVisible(true);
+                frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
                 // action that occurs when the back button is selected
                 button.addActionListener(new ActionListener()
