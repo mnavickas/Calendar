@@ -16,7 +16,7 @@ import Event.Event;
  * Tile showing the event.
  *
  */
-public class DayViewEvent extends JPanel implements IDayEvent{
+public class DayViewEvent extends JPanel{
 
 	/**
 	 * 
@@ -77,7 +77,6 @@ public class DayViewEvent extends JPanel implements IDayEvent{
 	/**
 	 * @return this Event
 	 */
-	@Override
 	public Event getEvent() {
 		return theEvent;
 	}

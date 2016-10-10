@@ -48,7 +48,7 @@ public class DayViewEventViewer extends JFrame{
 	 * @param frame Parent Frame
 	 * @return An Event viewer frame
 	 */
-	public static DayViewEventViewer create(IDayEvent e, JFrame frame){
+	public static DayViewEventViewer create(DayViewEvent e, JFrame frame){
 		if(mInstance == null){
 			return mInstance = new DayViewEventViewer(e,frame);
 		}
@@ -64,7 +64,7 @@ public class DayViewEventViewer extends JFrame{
 	 * @param e The event to display
 	 * @param frame Parent Frame
 	 */
-	private DayViewEventViewer(IDayEvent e, JFrame frame)
+	private DayViewEventViewer(DayViewEvent e, JFrame frame)
 	{
 		sFrame = frame;
 		eventToShow = e.getEvent();

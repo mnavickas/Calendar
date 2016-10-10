@@ -23,7 +23,7 @@ public class EventPicker implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		if(arg0.getClickCount() == 2){
-			IDayEvent e = (IDayEvent)arg0.getSource();
+			DayViewEvent e = (DayViewEvent)arg0.getSource();
 			DayViewEventViewer.create(e,frame);
 			
 		}
