@@ -28,12 +28,32 @@ public class DayViewGrid extends JPanel{
 		setMaximumSize(new Dimension(pane.getWidth(),sizeOfList*sizeOfEachGrid));
 		setPreferredSize(new Dimension(pane.getWidth(),sizeOfList*sizeOfEachGrid));
 	
+		@SuppressWarnings("unchecked")
+		LinkedList<Event> listClone = (LinkedList<Event>) todaysEvents.clone();
 		
 		Iterator<Event> it = todaysEvents.iterator();
 	
 		while(it.hasNext()){
-			
-			DayViewEvent e = new DayViewEvent(it.next());
+			boolean flag = false;
+			Event theEvent = it.next();
+			for(int i = 0; i < listClone.size(); i++ ){
+				Event ev = listClone.get(i);
+				if(theEvent.unique_id == ev.unique_id )
+				{
+					continue;
+				}
+				
+				for(int j = 0; j < theEvent.getTimeIntervalList().size(); j++){
+					for(int k = 0; k<ev.getTimeIntervalList().size(); k++){
+						if(theEvent.getTimeIntervalList().get(j).intersects(ev.getTimeIntervalList().get(k)))
+						{
+							flag = true;
+						}
+					}
+				}
+				
+			}
+			DayViewEvent e = new DayViewEvent(theEvent,flag);
 			e.addMouseListener(eventPicker);
 			add(e);
 			

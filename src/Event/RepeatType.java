@@ -30,7 +30,7 @@ public enum RepeatType {
 	/**
 	 * @return this as a user friendly string
 	 */
-	public String toString(){
+	public String toPrettyString(){
 		switch(this)
 		{
 		case BIWEEKLY:

@@ -27,8 +27,9 @@ public class DayViewEvent extends JPanel implements IDayEvent{
 	/**
 	 * Create the tile
 	 * @param e Event to display
+	 * @param overlapFlag Does this event overlap today?
 	 */
-	public DayViewEvent(Event e){
+	public DayViewEvent(Event e, boolean overlapFlag){
 		this.setLayout(null);
 		theEvent = e;
 
@@ -58,9 +59,17 @@ public class DayViewEvent extends JPanel implements IDayEvent{
 		
 		JLabel times = new JLabel(e.StartTime+" -> "+e.StopTime);
 		times.setForeground(Color.BLACK);
-		times.setBounds(30, 45, 400, 30);
+		times.setBounds(30, 35, 400, 30);
 
 		add(times);
+		
+		if(overlapFlag){
+			JLabel flag = new JLabel("OVERLAPPING EVENT");
+			flag.setForeground(Color.RED);
+			flag.setBounds(30, 65, 400, 30);
+
+			add(flag);
+		}
 		
 
 	}

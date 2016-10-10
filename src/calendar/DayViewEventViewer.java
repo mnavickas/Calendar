@@ -104,7 +104,7 @@ public class DayViewEventViewer extends JFrame{
 
 		RepeatType r = eventToShow.rType;
 
-		JLabel repeat = new JLabel("Repeat Type: "+r.toString());
+		JLabel repeat = new JLabel("Repeat Type: "+r.toPrettyString());
 		repeat.setBounds(50,300,300,30);
 		add(repeat);
 		
