@@ -28,17 +28,21 @@ public class DayViewGrid extends JPanel{
 		setMaximumSize(new Dimension(pane.getWidth(),sizeOfList*sizeOfEachGrid));
 		setPreferredSize(new Dimension(pane.getWidth(),sizeOfList*sizeOfEachGrid));
 	
+		/*
+		 *  Not sure what happens if we iterate over the same list twice at once.
+		 *  So, don't do that. (this is like, 0(n^4) or something, lol)
+		 */
 		@SuppressWarnings("unchecked")
 		LinkedList<Event> listClone = (LinkedList<Event>) todaysEvents.clone();
-		
 		Iterator<Event> it = todaysEvents.iterator();
 	
 		while(it.hasNext()){
 			boolean flag = false;
 			Event theEvent = it.next();
-			for(int i = 0; i < listClone.size(); i++ ){
-				Event ev = listClone.get(i);
-				if(theEvent.unique_id == ev.unique_id )
+			Iterator<Event> it2 = listClone.iterator();
+			while(it2.hasNext()){
+				Event ev = it2.next();
+				if( theEvent.unique_id == ev.unique_id )
 				{
 					continue;
 				}
@@ -51,17 +55,11 @@ public class DayViewGrid extends JPanel{
 						}
 					}
 				}
-				
 			}
 			DayViewEvent e = new DayViewEvent(theEvent,flag);
 			e.addMouseListener(eventPicker);
 			add(e);
-			
-		}
-
 		
+		}	
 	}
-
-
-
 }

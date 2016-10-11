@@ -64,7 +64,7 @@ public class DayViewEvent extends JPanel{
 		add(times);
 		
 		if(overlapFlag){
-			JLabel flag = new JLabel("OVERLAPPING EVENT");
+			JLabel flag = new JLabel("This event overlaps another.");
 			flag.setForeground(Color.RED);
 			flag.setBounds(30, 65, 400, 30);
 

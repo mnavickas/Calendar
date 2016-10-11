@@ -482,6 +482,12 @@ public class EventPlanner extends JFrame {
 			
 			e.printStackTrace();
 		}
+		if( dayList.getSelectedIndex()+1 > 28 && Monthly.isSelected() )
+		{
+			Toolkit.getDefaultToolkit().beep();
+			JOptionPane.showMessageDialog(this, "Monthly events must finish before the 28th.","Error",JOptionPane.WARNING_MESSAGE);
+			return;
+		}
 		
 		if(DoW.isSelected())
 		{

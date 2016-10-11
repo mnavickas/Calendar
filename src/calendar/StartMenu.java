@@ -272,8 +272,4 @@ public class StartMenu extends JPanel
 		}
 		menu.dispose();
 	}
-
-
-
-
 }
