@@ -38,7 +38,7 @@ public enum RepeatType {
 		case DAY_OF_WEEK:
 			return "Day Of Week";
 		case MONTHLY:
-			return "Monthy";
+			return "Monthly";
 		case NONE:
 			return "No Repeat";
 		case WEEKLY:

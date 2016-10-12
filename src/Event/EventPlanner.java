@@ -47,7 +47,7 @@ public class EventPlanner extends JFrame {
 		int count = 0;
 		for(int t = 0; t<2; t++)
 		{
-			for(int i = 0; i< 60; i+=15,count++){
+			for(int i = 15; i< 60; i+=15,count++){
 				time_strings[count]="12:"+i;
 				if(i == 0)
 					time_strings[count]+=0;
