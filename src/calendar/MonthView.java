@@ -42,7 +42,7 @@ public class MonthView extends JPanel{
     public static void initialize(Month month) {
 	MonthView view = new MonthView(month, true);
 
-	JFrame frame = new JFrame(view.monthName);
+	final JFrame frame = new JFrame(view.monthName);
 
 	// back button
 	JButton button = new JButton("Back to main menu");
@@ -78,10 +78,10 @@ public class MonthView extends JPanel{
      * @param needsHeader Whether to display a header showing Sunday to
      *                    Saturday.
      */
-    public MonthView(Month month, boolean needsHeader) {
+    public MonthView(final Month month, boolean needsHeader) {
 	super(new BorderLayout());
 
-	JPanel parent = this;
+	final JPanel parent = this;
 
 	// first day of the month, used to place starting point
 	int dayOfMonth = month.getFirstDayOfMonth();

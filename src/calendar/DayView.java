@@ -62,7 +62,7 @@ public class DayView extends JPanel {
      * @param day The object to use to get info on the day.
      * @param needsText Whether to display the text area of the agenda.
      */ 
-    public DayView(Day day, boolean needsText) {
+    public DayView(final Day day, boolean needsText) {
 	super(new BorderLayout());
 
 	setBorder(BorderFactory.createLineBorder(Color.black));

@@ -45,7 +45,7 @@ public class YearView extends JPanel
 		 */
         public static void initialize(int y, int m, int d)
         {
-                JFrame frame = new JFrame("Year View");
+                final JFrame frame = new JFrame("Year View");
 
 
                 // returns to the main start menu

@@ -23,9 +23,9 @@ public class DayViewLeftPanel extends JPanel {
 	public static final int FRAME_WIDTH 		= 700;
 	public static final int FRAME_HEIGHT 		= 700;
 	public DayViewLeftPanel(
-							Date date,
+							final Date date,
 							String dateString, 
-							JFrame old
+							final JFrame old
 							)
 	{
 		setLayout(null);

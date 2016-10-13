@@ -45,7 +45,7 @@ public class WeekView extends JPanel {
      * @param week The week to display
      */
     public static void initialize(Week week) {
-	JFrame frame = new JFrame(week.toString());
+	final JFrame frame = new JFrame(week.toString());
 
 	WeekView view = new WeekView(week, true, false);
 	frame.add(view, BorderLayout.CENTER);
@@ -74,10 +74,10 @@ public class WeekView extends JPanel {
      * @param needsHeader Whether to display the Sunday-Saturday header.
      * @param needsText Whether to display a text area in each day view.
      */
-    public WeekView(Week week, boolean needsHeader, boolean needsText) {
+    public WeekView(final Week week, boolean needsHeader, boolean needsText) {
 	super(new BorderLayout());
 
-	JPanel parent = this;
+	final JPanel parent = this;
 
 	if (needsHeader) {
 	    JPanel panel4 = new JPanel(new BorderLayout());

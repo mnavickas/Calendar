@@ -34,11 +34,11 @@ public class StartMenu extends JPanel
 	/**
 	 * static variables to be used in the generation of the menu
 	 */
-	private  JComboBox<String> viewType;
-	private  JComboBox<String> selectMonth;
-	private  JComboBox<String> selectDay;
-	private  JComboBox<String> selectDay2;
-	private  JComboBox<String> selectDay3;
+	private  JComboBox viewType;
+	private  JComboBox selectMonth;
+	private  JComboBox selectDay;
+	private  JComboBox selectDay2;
+	private  JComboBox selectDay3;
 
 
 
@@ -112,8 +112,8 @@ public class StartMenu extends JPanel
 		JLabel date = new JLabel("Select a date to start with: ");
 		JLabel view = new JLabel("Select a View to start with: ");
 
-		viewType = new JComboBox<String>(mwd); //select month,week, or day view
-		selectMonth = new JComboBox<String>(months); //select month,week, or day view
+		viewType = new JComboBox(mwd); //select month,week, or day view
+		selectMonth = new JComboBox(months); //select month,week, or day view
 
 
 		setLayout(new GridBagLayout());
@@ -146,9 +146,9 @@ public class StartMenu extends JPanel
 		add(selectMonth,gc);
 
 
-		selectDay = new JComboBox<String>(days); //select day to start with
-		selectDay2 = new JComboBox<String>(days2); //select day to start with
-		selectDay3 = new JComboBox<String>(days3); //select day to start with
+		selectDay = new JComboBox(days); //select day to start with
+		selectDay2 = new JComboBox(days2); //select day to start with
+		selectDay3 = new JComboBox(days3); //select day to start with
 
 		gc.anchor = GridBagConstraints.CENTER;
 		gc.gridx = 1;

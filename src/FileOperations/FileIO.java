@@ -54,7 +54,7 @@ public final class FileIO {
 			BufferedReader fr = new BufferedReader(new FileReader(filepath));
 			jsonArray = (JSONArray) parser.parse( fr );
 			fr.close();
-		} catch (ParseException | IOException e) {
+		} catch (Exception e) {
 			jsonArray = new JSONArray();
 		}
 		return jsonArray;

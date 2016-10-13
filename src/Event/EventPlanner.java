@@ -47,7 +47,7 @@ public class EventPlanner extends JFrame {
 		int count = 0;
 		for(int t = 0; t<2; t++)
 		{
-			for(int i = 15; i< 60; i+=15,count++){
+			for(int i = 0; i< 60; i+=15,count++){
 				time_strings[count]="12:"+i;
 				if(i == 0)
 					time_strings[count]+=0;
@@ -87,8 +87,8 @@ public class EventPlanner extends JFrame {
 
 
 
-	private JComboBox<String> startTime;
-	private JComboBox<String> endTime;
+	private JComboBox startTime;
+	private JComboBox endTime;
 	private JLabel startTimeLabel;
 	private JLabel endTimeLabel;
 
@@ -96,9 +96,9 @@ public class EventPlanner extends JFrame {
 	private JLabel endDateLabel;
 	private JTextField startDate;
 
-	private JComboBox<String> monthList 		= null;
-	private JComboBox<String> dayList			= null;
-	private JComboBox<String> yearList			= null;
+	private JComboBox monthList 		= null;
+	private JComboBox dayList			= null;
+	private JComboBox yearList			= null;
 
 	private JTextField nameText;
 	private JTextArea descriptionText;
@@ -227,7 +227,7 @@ public class EventPlanner extends JFrame {
 			startTimeLabel.setBounds(50,145,150,30);
 			add(startTimeLabel);
 
-			startTime = new JComboBox<String>(time_strings);
+			startTime = new JComboBox(time_strings);
 			startTime.setBounds(50,175,110,30);
 			add(startTime);
 
@@ -235,7 +235,7 @@ public class EventPlanner extends JFrame {
 			endTimeLabel.setBounds(250,145,150,30);
 			add(endTimeLabel);
 
-			endTime = new JComboBox<String>(time_strings);
+			endTime = new JComboBox(time_strings);
 			endTime.setBounds(250,175,110,30);
 			add(endTime);
 
@@ -537,7 +537,7 @@ public class EventPlanner extends JFrame {
 	 */
 	private void initMonthBox()
 	{
-		monthList = new JComboBox<String>(months);
+		monthList = new JComboBox(months);
 
 		monthList.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent e) {
@@ -562,7 +562,7 @@ public class EventPlanner extends JFrame {
 			names[i-1] = i+"";
 		}
 
-		dayList = new JComboBox<String>(names);
+		dayList = new JComboBox(names);
 
 
 		dayList.addActionListener(new ActionListener () {
@@ -581,7 +581,7 @@ public class EventPlanner extends JFrame {
 	{
 		String[] years = {"2016","2017"};
 
-		yearList = new JComboBox<String>(years);
+		yearList = new JComboBox(years);
 		yearList.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent e) {
 
